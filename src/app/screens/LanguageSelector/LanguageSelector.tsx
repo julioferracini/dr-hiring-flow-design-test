@@ -20,7 +20,7 @@ export default function LanguageSelector({ onSelectLanguage, onBack }: LanguageS
       {/* Status Bar */}
       <div className="h-[44px] bg-[#820AD1] w-full">
         <div className="flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] size-full">
-          <div className="flex flex-col font-['SF_Pro_Text'] font-semibold justify-center leading-[0] text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
+          <div className="flex flex-col font-sf-pro font-semibold justify-center leading-[0] text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
             <p className="leading-[20px]">09:07</p>
           </div>
         </div>

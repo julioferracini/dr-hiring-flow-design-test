@@ -258,7 +258,7 @@ export default function OfferHubScreen({
         {/* Status Bar */}
         <div className="h-[44px] relative w-full">
           <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
-            <div className="flex flex-col font-['SF_Pro_Text'] font-semibold justify-center leading-[0] not-italic relative text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
+            <div className="flex flex-col font-sf-pro font-semibold justify-center leading-[0] not-italic relative text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
               <p className="leading-[20px]">09:07</p>
             </div>
           </div>
@@ -385,7 +385,7 @@ export default function OfferHubScreen({
 
                   {/* Animated Total Balance with Roulette */}
                   <div className="content-stretch flex flex-col gap-[10px] items-center px-[20px] py-[7px] relative w-full">
-                    <div className="flex flex-col font-['Nu_Sans_Display'] font-medium justify-center leading-[0] not-italic relative text-[#1f0230] text-[36px] text-center whitespace-nowrap">
+                    <div className="flex flex-col font-nu-display font-medium justify-center leading-[0] not-italic relative text-[#1f0230] text-[36px] text-center whitespace-nowrap">
                       <p className="leading-[1.1]" style={{ fontFeatureSettings: "'lnum', 'pnum'" }}>
                         <RouletteNumber value={currentData.totalBalance} delay={0} />
                       </p>

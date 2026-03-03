@@ -304,7 +304,7 @@ function TimeWrapper() {
   return (
     <div className="content-stretch flex items-center relative shrink-0" data-name="Time Wrapper">
       <div
-        className="flex flex-col font-['SF_Pro_Text',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap"
+        className="flex flex-col font-sf-pro justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap"
         style={{ fontWeight: 600 }}
       >
         <p className="leading-[20px]">11:08</p>
@@ -386,7 +386,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
         <div className="overflow-clip rounded-[inherit] size-full">
           <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
             <p
-              className="font-['Graphik',sans-serif] leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(26px,7vw,36px)] text-center tracking-[-1.08px] w-full whitespace-pre-wrap"
+              className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(26px,7vw,36px)] text-center tracking-[-1.08px] w-full whitespace-pre-wrap"
               style={{ fontWeight: 600, fontFeatureSettings: "'ss05'" }}
             >
               {t("simulation.title")}
@@ -568,7 +568,7 @@ function InputDownpayment({ value, onClick }: { value: string; onClick: () => vo
       </div>
       <div className="bg-[#efefef] h-[4px] shrink-0 w-[min(140px,40vw)]" data-name="Divider" />
       <div
-        className="flex flex-col font-['Graphik',sans-serif] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
+        className="flex flex-col font-graphik justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
         style={{ fontWeight: 400, fontFeatureSettings: "'ss05'" }}
       >
         <p className="leading-[1.5] overflow-hidden">{t("simulation.downPayment")}</p>
@@ -614,7 +614,7 @@ function InputMonthlyPayment({
           data-name="Divider"
         />
         <div
-          className="flex flex-col font-['Graphik',sans-serif] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
+          className="flex flex-col font-graphik justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
           style={{ fontWeight: 400, fontFeatureSettings: "'ss05'" }}
         >
           <p className="leading-[1.5] overflow-hidden">{t("simulation.monthlyPayment")}</p>
@@ -646,7 +646,7 @@ function InputMonthlyPayment({
       </div>
       <div className="bg-[#efefef] h-[4px] shrink-0 w-[min(140px,40vw)]" data-name="Divider" />
       <div
-        className="flex flex-col font-['Graphik',sans-serif] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
+        className="flex flex-col font-graphik justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
         style={{ fontWeight: 400, fontFeatureSettings: "'ss05'" }}
       >
         <p className="leading-[1.5] overflow-hidden">{t("simulation.monthlyPayment")}</p>
@@ -757,7 +757,7 @@ function InputInstallments({
         whileTap={{ scale: 0.98 }}
       >
         <p
-          className="font-['Graphik',sans-serif] leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
+          className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
           style={{ fontWeight: 600, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
         >
           <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={600} />
@@ -768,7 +768,7 @@ function InputInstallments({
         data-name="Divider"
       />
       <div
-        className="flex flex-col font-['Graphik',sans-serif] justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
+        className="flex flex-col font-graphik justify-center leading-[0] not-italic overflow-hidden relative shrink-0 text-[14px] text-[rgba(0,0,0,0.64)] text-ellipsis tracking-[-0.14px] whitespace-nowrap"
         style={{ fontWeight: 400, fontFeatureSettings: "'ss05'" }}
       >
         <p className="leading-[1.5] overflow-hidden">{t("simulation.installments")}</p>
@@ -1165,7 +1165,7 @@ function DownpaymentAlertSheet({ onClose }: { onClose: () => void }) {
           </div>
 
           <h3
-            className="text-center mb-3 font-['Graphik',sans-serif] text-[#1f0230]"
+            className="text-center mb-3 font-graphik text-[#1f0230]"
             style={{
               fontWeight: 600,
               fontFeatureSettings: "'ss05'",
@@ -1177,7 +1177,7 @@ function DownpaymentAlertSheet({ onClose }: { onClose: () => void }) {
           </h3>
 
           <p
-            className="text-center mb-6 font-['Nu_Sans_Text',sans-serif]"
+            className="text-center mb-6 font-nu-sans"
             style={{
               fontWeight: 400,
               fontSize: "15px",
@@ -1195,7 +1195,7 @@ function DownpaymentAlertSheet({ onClose }: { onClose: () => void }) {
             whileTap={{ scale: 0.98 }}
           >
             <span
-              className="font-['Nu_Sans_Text',sans-serif] text-[#FFFFFF]"
+              className="font-nu-sans text-[#FFFFFF]"
               style={{ fontWeight: 600, fontSize: "15px" }}
             >
               {t("simulation.gotIt")}

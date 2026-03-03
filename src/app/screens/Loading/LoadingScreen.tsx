@@ -70,7 +70,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex flex-col justify-center text-[15px] text-center text-white tracking-[-0.24px] font-['SF_Pro_Text']">
+        <div className="flex flex-col justify-center text-[15px] text-center text-white tracking-[-0.24px] font-sf-pro">
           <p className="leading-[20px]">11:08</p>
         </div>
         <div className="h-[20px] w-[67.661px]">
