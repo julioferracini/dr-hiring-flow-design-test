@@ -3,13 +3,10 @@
 > Interactive mobile prototype for debt renegotiation flows, built as a design-engineering exploration tool.
 
 <p align="center">
-  <img src="https://cdn.sanity.io/images/599r6htc/regionalized/5094e9b5b5e2b63444a2e027a89c75b8ed37b213-1730x1040.png" alt="Figma Make" height="36" />
-  &nbsp;&nbsp;&nbsp;
   <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" alt="Vercel" height="36" />
   &nbsp;&nbsp;&nbsp;
   <img src="https://www.cursor.com/apple-touch-icon.png" alt="Cursor" height="36" />
   &nbsp;&nbsp;&nbsp;
-  <img src="https://maze.co/wp-content/themes/jesuspended/dist/images/favicons/apple-touch-icon.png" alt="Maze" height="36" />
 </p>
 
 <p align="center">
