@@ -1,5 +1,5 @@
 import svgPaths from "./svg-h2o8ic8eql";
-import imgLeading from "figma:asset/b2baec999158d1ea5a2d33a31da4c4eb97f205be.png";
+import imgLeading from "../assets/b2baec999158d1ea5a2d33a31da4c4eb97f205be.png";
 
 function TimeWrapper() {
   return (
