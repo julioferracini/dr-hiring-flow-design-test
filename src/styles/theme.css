@@ -79,6 +79,24 @@
 }
 
 @theme inline {
+  /* ── Project font families (mapped from Figma → actual Google Fonts) ── */
+  --font-graphik: var(--font-graphik);
+  --font-nu-sans: var(--font-nu-sans-text);
+  --font-nu-display: var(--font-nu-sans-display);
+  --font-sf-pro: var(--font-sf-pro);
+
+  /* ── Project color tokens (use as text-nu-purple, bg-nu-gray, etc.) ── */
+  --color-nu-purple: #820ad1;
+  --color-nu-purple-light: rgba(130, 10, 209, 0.05);
+  --color-nu-text: #1f0230;
+  --color-nu-text-secondary: rgba(31, 2, 48, 0.62);
+  --color-nu-text-muted: rgba(0, 0, 0, 0.64);
+  --color-nu-success-bg: #ddf5e5;
+  --color-nu-success-text: #0c7a3a;
+  --color-nu-gray: #efefef;
+  --color-nu-gray-dark: rgba(31, 2, 48, 0.62);
+  --color-nu-overlay: rgba(0, 0, 0, 0.4);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -234,7 +252,7 @@
 
   /* Thick cursor for input fields - Custom styling for better visibility */
   input[type="text"] {
-    caret-color: #820ad1;
+    caret-color: var(--color-nu-purple, #820ad1);
   }
 
   /* Force caret to be visible and thick in all browsers */
@@ -260,7 +278,7 @@
 
   /* Ensure cursor blinks naturally */
   input[type="text"]:focus {
-    caret-color: #820ad1;
+    caret-color: var(--color-nu-purple, #820ad1);
   }
 
   /* Override any animations that might stop cursor blinking */
@@ -286,7 +304,7 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background-color: var(--caret-color, #820ad1);
+      background-color: var(--caret-color, var(--color-nu-purple, #820ad1));
       animation: blink 1s step-end infinite;
       pointer-events: none;
     }

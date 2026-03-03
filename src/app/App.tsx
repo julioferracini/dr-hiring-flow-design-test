@@ -229,51 +229,54 @@ function AppContent() {
     mass: 0.9
   };
 
-  if (currentScreen === "flowSelector") {
-    return (
-      <div className="size-full flex items-center justify-center bg-gray-100">
-        <div className="w-full h-full md:w-[375px] md:h-[812px] md:rounded-[32px] md:shadow-2xl relative overflow-hidden bg-white">
-          <FlowSelectorScreen
-            onSelectFlow={(flow) => {
-              setActiveFlow(flow);
-              setCurrentScreen("languageSelector");
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (currentScreen === "languageSelector") {
-    return (
-      <div className="size-full flex items-center justify-center bg-gray-100">
-        <div className="w-full h-full md:w-[375px] md:h-[812px] md:rounded-[32px] md:shadow-2xl relative overflow-hidden bg-white">
-          <LanguageSelector
-            onSelectLanguage={handleLanguageSelect}
-            onBack={() => setCurrentScreen("flowSelector")}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (currentScreen === "initialLoading") {
-    return (
-      <div className="size-full flex items-center justify-center bg-white">
-        <motion.div
-          className="w-8 h-8 rounded-full border-4 border-t-transparent"
-          style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="size-full flex items-center justify-center bg-gray-100">
       <div className="w-full h-full md:w-[375px] md:h-[812px] md:rounded-[32px] md:shadow-2xl relative overflow-hidden bg-white">
         <AnimatePresence initial={false} custom={direction}>
+          {currentScreen === "flowSelector" && (
+            <motion.div key="flowSelector" className="absolute inset-0 bg-white"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <FlowSelectorScreen
+                onSelectFlow={(flow) => {
+                  setActiveFlow(flow);
+                  setDirection("forward");
+                  setCurrentScreen("languageSelector");
+                }}
+              />
+            </motion.div>
+          )}
+
+          {currentScreen === "languageSelector" && (
+            <motion.div key="languageSelector" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit" transition={pageTransition}
+              className="absolute inset-0 bg-white"
+            >
+              <LanguageSelector
+                onSelectLanguage={handleLanguageSelect}
+                onBack={() => {
+                  setDirection("backward");
+                  setCurrentScreen("flowSelector");
+                }}
+              />
+            </motion.div>
+          )}
+
+          {currentScreen === "initialLoading" && (
+            <motion.div key="initialLoading" className="absolute inset-0 bg-white flex items-center justify-center"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.div
+                className="w-8 h-8 rounded-full border-4 border-t-transparent"
+                style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.div>
+          )}
+
           {currentScreen === "offerhub" && (
             <motion.div key="offerhub" className="absolute inset-0"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
