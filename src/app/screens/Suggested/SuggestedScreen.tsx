@@ -318,7 +318,7 @@ function ValueEditorSheet({
               <h3
                 style={{
                   fontFamily: "'Graphik', sans-serif",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: "20px",
                   letterSpacing: "-0.6px",
                   color: "#1f0230",
@@ -350,7 +350,7 @@ function ValueEditorSheet({
                 <span
                   style={{
                     fontFamily: "'Graphik', sans-serif",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     fontSize: "32px",
                     color: "#1f0230",
                     letterSpacing: "-0.96px",
@@ -366,7 +366,7 @@ function ValueEditorSheet({
                   autoFocus
                   style={{
                     fontFamily: "'Graphik', sans-serif",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     fontSize: "40px",
                     color: "#1f0230",
                     letterSpacing: "-1.2px",
@@ -510,7 +510,7 @@ function AllOptionsSheet({
                 className="text-[#1f0230] text-[28px] tracking-[-0.84px] whitespace-pre-wrap"
                 style={{
                   fontFamily: tokens.fonts.nuSans,
-                  fontWeight: 600,
+                  fontWeight: 500,
                   lineHeight: 1.2,
                 }}
               >
@@ -668,7 +668,7 @@ function CalcSummarySheet({
               <div className="w-[36px] h-[5px] rounded-full" style={{ backgroundColor: "rgba(0,0,0,0.12)" }} />
             </div>
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
-              <h2 style={{ fontFamily: "'Graphik', sans-serif", fontWeight: 600, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
+              <h2 style={{ fontFamily: "'Graphik', sans-serif", fontWeight: 500, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
               <motion.button className="size-[36px] flex items-center justify-center rounded-full" style={{ backgroundColor: "rgba(31,2,48,0)" }} onClick={onClose} whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }} whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }} transition={{ duration: 0.12 }} aria-label="Close">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z" fill="#1F0230" fillOpacity="0.62" /></svg>
               </motion.button>

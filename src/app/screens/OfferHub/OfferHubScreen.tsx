@@ -385,7 +385,7 @@ export default function OfferHubScreen({
 
                   {/* Animated Total Balance with Roulette */}
                   <div className="content-stretch flex flex-col gap-[10px] items-center px-[20px] py-[7px] relative w-full">
-                    <div className="flex flex-col font-nu-display font-medium justify-center leading-[0] not-italic relative text-[#1f0230] text-[36px] text-center whitespace-nowrap">
+                    <div className="flex flex-col font-nu-display font-bold justify-center leading-[0] not-italic relative text-[#1f0230] text-[36px] text-center whitespace-nowrap">
                       <p className="leading-[1.1]" style={{ fontFeatureSettings: "'lnum', 'pnum'" }}>
                         <RouletteNumber value={currentData.totalBalance} delay={0} />
                       </p>

@@ -169,7 +169,7 @@ function MainTitle({ monthlyPayment, savings }: MainTitleProps) {
               <p className="leading-[1.3] whitespace-pre-wrap">{t('summary.yourMonthlyPayment')}</p>
             </div>
             <div className="content-stretch flex flex-col gap-[10px] items-center px-[110px] py-[7px] relative shrink-0 w-[336px]">
-              <div className="flex flex-col font-medium justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-center whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
+              <div className="flex flex-col font-bold justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-center whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
                 <p className="leading-[1.1]">{formatCurrency(monthlyPayment)}</p>
               </div>
               <div className="bg-[#ddf5e5] content-stretch flex items-center max-w-[359px] min-h-[20px] overflow-clip px-[4px] py-[2px] relative rounded-[4px] shrink-0">
