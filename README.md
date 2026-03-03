@@ -1,115 +1,177 @@
 # Debt Resolution Prototype
 
-> Interactive mobile prototype for debt renegotiation flows, built as a design-engineering exploration tool.
+Interactive mobile prototype (375x812) for debt renegotiation flows. Two distinct flows let users explore different interaction models for the same financial product. Everything runs client-side with real amortization math, three languages, and production-grade micro-interactions.
 
-<p align="center">
-  <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" alt="Vercel" height="36" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://www.cursor.com/apple-touch-icon.png" alt="Cursor" height="36" />
-  &nbsp;&nbsp;&nbsp;
-</p>
-
-<p align="center">
-  <strong>Built with</strong> Figma Make &bull; Deployed on Vercel &bull; Developed in Cursor &bull; Tested via Maze
-</p>
+**Stack:** React 18 · TypeScript · Motion · Tailwind CSS v4 · Vite
 
 ---
 
-## What Is This
+## Quick Start
 
-A fully functional mobile prototype (375x812) simulating a debt installment negotiation experience. Two distinct flows let users explore different interaction models for the same financial product. Everything runs client-side with real amortization math, three languages, and production-grade micro-interactions.
+### Prerequisites
 
-**Stack:** React 18 + TypeScript + Motion + Tailwind CSS v4 + Vite
+| Tool    | Version  | Check             |
+| ------- | -------- | ----------------- |
+| Node.js | >= 18    | `node -v`         |
+| pnpm    | >= 8     | `pnpm -v`         |
+
+> **npm** or **yarn** work too — replace `pnpm` accordingly.
+
+### Clone & Run
+
+```bash
+git clone git@github.com:julioferracini/dr-hiring-flow-design-test.git
+cd dr-hiring-flow-design-test
+pnpm install
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build for Production
+
+```bash
+pnpm build      # outputs to dist/
+pnpm preview    # preview the production build locally
+```
+
+---
+
+## Deploy to Vercel
+
+The project is a standard Vite app — Vercel auto-detects everything.
+
+**Option A — Push to GitHub, import on Vercel:**
+
+1. Push your branch to GitHub
+2. Go to [vercel.com/new](https://vercel.com/new), import the repo
+3. Vercel auto-detects Vite. Click **Deploy**
+
+**Option B — CLI:**
+
+```bash
+npx vercel --prod
+```
+
+**Vercel settings (auto-detected):**
+
+| Setting          | Value          |
+| ---------------- | -------------- |
+| Framework Preset | Vite           |
+| Build Command    | `pnpm build`   |
+| Output Directory | `dist`         |
+| Install Command  | `pnpm install` |
 
 ---
 
 ## Flows
 
-| Flow | Core Screen | How It Works |
-|------|-------------|--------------|
-| **A** | Simulation | Slider-driven. User drags between 2-60 installments and sees real-time recalculation with animated numbers. |
-| **B** | Suggested Conditions | Target-value driven. User enters a monthly budget; the system suggests a best-match plan plus secondary options with cascading micro-interactions. |
+| Flow  | Core Screen            | How It Works                                                                                   |
+| ----- | ---------------------- | ---------------------------------------------------------------------------------------------- |
+| **A** | Simulation (slider)    | User drags a slider to pick 2–60 installments. Real-time recalculation with animated numbers.  |
+| **B** | Suggested Conditions   | User enters a monthly budget. System suggests a best-match plan plus secondary options.         |
 
-Both flows share the same downstream screens (DueDate, Summary, Terms, PIN, Loading, Feedback).
+Both flows share downstream screens: DueDate → Summary → Terms → PIN → Loading → Feedback.
 
 ---
 
 ## Screens
 
-| # | Screen | Path | Description |
-|---|--------|------|-------------|
-| 1 | **Flow Selector** | `screens/FlowSelector` | Entry point. Choose between Flow A (slider icon) or Flow B (sparkles icon). |
-| 2 | **Language Selector** | `screens/LanguageSelector` | Pick a language: pt-BR, es-MX, or en-US. Sets the i18n context for the entire session. |
-| 3 | **Offer Hub** | `screens/OfferHub` | Three renegotiation offers (cash, short-term, long-term) calculated from locale-specific rates. |
-| 4 | **Installment Value** | `screens/InstallmentValue` | ATM-style numeric keypad. User types a monthly target value. Validates minimum and shows rotating tips. |
-| 5A | **Simulation** | `screens/Simulation` | *(Flow A)* MUI slider with roulette-animated numbers, savings pulse badge, and auto-triggered downpayment alert at 20+ installments. |
-| 5B | **Suggested Conditions** | `screens/Suggested` | *(Flow B)* Best-match card with purple badge, two secondary options, bottom sheet with 1-60 installment list, and ATM keypad for value editing. |
-| 6 | **Due Date** | `screens/DueDate` | Calendar bottom sheet. Select a payment date from a 6-day range. Shows plan summary with discount and downpayment info. |
-| 7 | **Summary** | `screens/Summary` | Full review: installments, monthly amount, due date, downpayment, interest breakdown. Edit button routes back to the correct flow. |
-| 8 | **Terms & Conditions** | `screens/TermsConditions` | Scrollable legal copy. Confirm button enables after reading. |
-| 9 | **PIN** | `screens/Pin` | 4-digit confirmation overlay (z-40) on top of Terms. Auto-validates on last digit. |
-| 10 | **Loading** | `screens/Loading` | Three-step progress animation with branded messaging. |
-| 11 | **Feedback** | `screens/Feedback` | Post-success screen. "Make first payment" or "Do it later" — both restart the prototype. |
-| - | **Success** | `screens/Success` | Confirmation state (used in alternative flows). |
-| - | **Downpayment Value** | `screens/DownPaymentValue` | Numeric input for downpayment amount (triggered when installments > 20). |
-| - | **Downpayment Date** | `screens/DownPaymentDate` | Date picker for downpayment scheduling. |
+| #  | Screen                 | Description                                                            |
+| -- | ---------------------- | ---------------------------------------------------------------------- |
+| 1  | Flow Selector          | Choose Flow A or Flow B                                                |
+| 2  | Language Selector      | Pick pt-BR, es-MX, or en-US                                           |
+| 3  | Offer Hub              | Three renegotiation offers (cash, short-term, long-term)               |
+| 4  | Installment Value      | ATM-style numeric keypad for monthly target                            |
+| 5A | Simulation             | *(Flow A)* Slider with roulette-animated numbers and downpayment alert |
+| 5B | Suggested Conditions   | *(Flow B)* Best-match card, secondary options, bottom sheet list       |
+| 6  | Due Date               | Calendar bottom sheet for payment date selection                       |
+| 7  | Summary                | Full review with installments, interest, and edit capability           |
+| 8  | Terms & Conditions     | Scrollable legal copy, confirm after reading                           |
+| 9  | PIN                    | 4-digit confirmation overlay                                          |
+| 10 | Loading                | Three-step progress animation                                         |
+| 11 | Feedback               | Post-success with payment CTA                                         |
 
 ---
 
-## Running Locally
+## Project Structure
 
-```bash
-pnpm install
-pnpm dev        # http://localhost:5173
-pnpm build      # Production build -> dist/
+```
+src/
+  main.tsx                          Entry point
+  app/
+    App.tsx                         Navigation (history-stack, no React Router)
+    constants/                      Colors, tokens, financial rules, currencies
+    hooks/                          useFinancialCalculator, useOfferEngine
+    i18n/                           Translations (pt-BR, es-MX, en-US)
+    components/                     Shared UI (ScreenNavBar, IOSBottomSheet, BottomActionBar, …)
+    screens/                        All screen components
+  imports/                          Figma-exported SVG modules
+  assets/                           Image assets
+  styles/                           Global CSS, fonts, Tailwind v4 theme
 ```
 
-Requires Node >= 18 and pnpm >= 8.
-
 ---
 
-## Deploying
+## Branch Strategy
 
-The project is configured for Vercel with zero configuration (Vite auto-detected).
-
-```bash
-# Option 1: Push to GitHub, import on vercel.com/new
-git push origin main
-
-# Option 2: Direct deploy via CLI
-npx vercel --prod
+```
+main        ← production-ready
+  └── develop   ← integration branch
+       ├── feature/…
+       └── fix/…
 ```
 
-See [CURSOR_REPRODUCTION_GUIDE.en.md](./CURSOR_REPRODUCTION_GUIDE.en.md) for the full step-by-step including Git setup, Vercel configuration, and custom domains.
+### Working on a feature
 
----
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/my-feature
 
-## Documentation
+# work, commit, push
+git add .
+git commit -m "feat(scope): description"
+git push -u origin feature/my-feature
+```
 
-| File | What It Covers |
-|------|---------------|
-| [CURSOR_REPRODUCTION_GUIDE.en.md](./CURSOR_REPRODUCTION_GUIDE.en.md) | Complete reproduction guide: architecture, business logic, i18n, animations, deployment |
-| [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md) | Directory tree and file responsibilities |
-| [MIGRATION_SUMMARY.md](./MIGRATION_SUMMARY.md) | Changelog from initial scaffold to V1 |
+This project follows [Conventional Commits](https://www.conventionalcommits.org/):
+`feat`, `fix`, `refactor`, `style`, `docs`, `perf`, `chore`.
 
 ---
 
 ## Key Technical Decisions
 
-- **Navigation:** History-stack pattern in `App.tsx` (not React Router). Supports contextual back, forward, and jump-to navigation.
-- **Financial math:** PRICE amortization (BR, MX) and flat-discount (US placeholder). Interpolated discount model: 20% at 2 installments down to 3% at 60.
-- **i18n:** Custom React Context with `t()` function, `formatCurrency()`, and `formatDate()`. Three complete locale files.
-- **Animations:** Spring physics via Motion. Roulette numbers, pulse badges, slot-machine cascades, draggable bottom sheets.
-- **Zero duplication:** SuggestedScreen reuses `useFinancialCalculator().calculate()` from Simulation. Shared components across all screens.
+- **Navigation:** History-stack pattern in `App.tsx` (no React Router). Supports back, forward, and jump-to.
+- **Financial math:** PRICE amortization (BR, MX) and flat-discount (US). Interpolated discount model.
+- **i18n:** Custom React Context with `t()`, `formatCurrency()`, `formatDate()`. Three complete locale files.
+- **Animations:** Spring physics via Motion. Roulette numbers, pulse badges, draggable bottom sheets.
+- **Design tokens:** Centralized in `constants/colors.ts` and `constants/tokens.ts`.
 
 ---
 
-## Contact
+## Documentation
 
-Questions, feedback, or access issues:
+Detailed internal docs live in the `docs/` folder:
+
+| File                                                  | Topic                                           |
+| ----------------------------------------------------- | ----------------------------------------------- |
+| [docs/reproduction-guide.md](docs/reproduction-guide.md) | Full reproduction guide: architecture, logic, i18n |
+| [docs/flow-implementation.md](docs/flow-implementation.md) | Flow implementation details and state management   |
+| [docs/bottomsheet-behavior.md](docs/bottomsheet-behavior.md) | Bottom sheet animation behavior and timing          |
+| [docs/bottomsheet-usage.md](docs/bottomsheet-usage.md)   | IOSBottomSheet component API and usage              |
+
+---
+
+## Troubleshooting
+
+| Problem                    | Solution                                                       |
+| -------------------------- | -------------------------------------------------------------- |
+| `pnpm install` fails       | Delete `node_modules` and `pnpm-lock.yaml`, retry              |
+| Port 3000 in use           | `pnpm dev -- --port 3001`                                      |
+| Blank page after deploy    | Check `base` in `vite.config.ts` matches your deploy path      |
+| Motion import error        | Use `from "motion/react"`, NOT `"framer-motion"`               |
+
+---
 
 **Julio Ferracini** — [@julioferracini](https://nubank.enterprise.slack.com/team/U074WLC2SJG) on Slack
-
----
-
-<sub>V1 closed — March 2026</sub>

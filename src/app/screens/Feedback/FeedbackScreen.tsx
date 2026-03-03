@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import svgPaths from "../../../imports/svg-htj6n9r419";
-import imgFeedback from "figma:asset/7850f91201840d11465ee9d7c0fcafe2717b64a8.png";
+import imgFeedback from "../../../assets/7850f91201840d11465ee9d7c0fcafe2717b64a8.png";
 import { tokens } from "../../constants";
 import { useTranslation } from "../../i18n/context";
 
