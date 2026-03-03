@@ -1,0 +1,298 @@
+/**
+ * Español (México) Translations
+ * Tom Nubank: Objetivo, Atencioso, Espirituoso, Antenado
+ * 
+ * Diretrizes:
+ * - Directo y claro
+ * - Empático y cercano
+ * - Ligero y con personalidad
+ * - Lenguaje natural mexicano
+ * - Sin formalidades excesivas
+ * - Uso de "tú" (informal pero respetuoso)
+ */
+
+import type { Translations } from '../types';
+
+export const esMX: Translations = {
+  common: {
+    continue: 'Continuar',
+    back: 'Volver',
+    close: 'Cerrar',
+    confirm: 'Confirmar',
+    cancel: 'Cancelar',
+    next: 'Siguiente',
+    previous: 'Anterior',
+    done: 'Listo',
+    skip: 'Omitir',
+  },
+  
+  languageSelector: {
+    title: 'Resolución de Deudas',
+    subtitle: 'Elige un idioma para ver las condiciones',
+  },
+  
+  entryPoint: {
+    title: 'Resolución de Deudas',
+    subtitle: 'Elige un idioma para comenzar',
+    selectLanguage: 'Selecciona tu idioma',
+  },
+  
+  offerHub: {
+    title: 'Liquida tu saldo',
+    subtitle: 'Elige cómo pagar',
+    tabs: {
+      all: 'Todas',
+      credit: 'Tarjeta',
+      loans: 'Préstamos',
+    },
+    totalBalance: 'Total a pagar',
+    originalBalance: 'Saldo original',
+    savings: 'Ahorras',
+    discount: 'Ahorra {amount}',
+    badge: 'Alivio mensual',
+    cta: 'Ver esta oferta',
+    lastUpdate: 'Actualizado {time}',
+    balanceFrom: 'de',
+    balanceTo: 'a:',
+    upToAmount: 'Hasta {amount} de descuento',
+    firstPaymentFrom: 'Primer pago desde {amount}',
+    payAmount: 'Pagar {amount}',
+    payOnlyAmount: 'Paga solo {amount}',
+    currentBalanceAmount: 'Saldo actual {amount}',
+    stayUpToDate: 'Estar al día',
+    payButton: 'Pagar',
+    checkDetailsButton: 'Ver detalles',
+    offerSolveAllMonthly: 'Liquidar todas las deudas en mensualidades',
+    offerSolveAllNow: 'Liquidar todas las deudas ahora',
+    offerConsolidateDebts: 'Consolidar deudas',
+    offerFinanceCurrentBill: 'Financiar cargo actual',
+    offerPayCurrentBill: 'Pagar cargo actual',
+    offerPayLateLoan: 'Liquidar préstamo vencido',
+    offerPayLateInstallments: 'Pagar mensualidades vencidas',
+    badgeMonthlyPayments: 'Pagos mensuales',
+    badgeBestDiscount: 'Mejor descuento',
+  },
+  
+  simulation: {
+    title: 'Detalles del plan',
+    subtitle: 'Encuentra lo mejor para ti',
+    installments: 'Cuotas',
+    installmentsCount: '{count}x',
+    monthlyPayment: 'Cuota mensual',
+    totalSavings: 'Ahorro total',
+    total: 'Total a pagar',
+    downPayment: 'Enganche',
+    downPaymentRequired: 'Enganche requerido',
+    downPaymentRequiredMessage: 'Para planes de pago con <strong>20 cuotas o más</strong>, se requiere un enganche mínimo del <strong>5% de la deuda total</strong>. Puedes aumentar este monto si lo deseas.',
+    downPaymentMinimum: 'Mínimo {amount} (5%)',
+    downPaymentMaximum: 'Máximo {amount} (90%)',
+    keepForAllInstallments: 'Mantener para todas las cuotas',
+    keepForAllInstallmentsSubtitle: 'Valor fijo de 2 a 60 meses',
+    sliderMoreDiscount: 'Más descuento',
+    sliderMoreTime: 'Más plazo',
+    rangeLabel: 'Rango: 2 - 60 meses',
+    rangeDownPayment: 'Rango: {min} - {max}',
+    continue: 'Continuar',
+    gotIt: 'Entendido',
+    confirm: 'Confirmar',
+    close: 'Cerrar',
+  },
+  
+  suggested: {
+    title: '¿Cuál es el mejor\nplan de cuotas?',
+    targetLabel: 'Sugerencias basadas en tu valor objetivo',
+    bestMatchBadge: 'A tu medida',
+    installmentsOf: '{count} cuotas de {amount}',
+    installmentOf: '1 cuota de {amount}',
+    discountAmount: '{amount} de descuento',
+    totalLabel: 'Total: {amount}',
+    noDownpayment: 'Sin entrada',
+    downpaymentOf: 'Entrada de {amount}',
+    moreOptions: 'Más opciones',
+    moreOptionsSubtitle: 'hasta {max} cuotas',
+    faqTitle: '¿Qué pasa si no puedo pagar?',
+    sheetTitle: 'Elige el número de cuotas',
+    editValueTitle: 'Valor de la cuota',
+    confirm: 'Confirmar',
+    infoSheetTitle: 'Detalles del plan',
+  },
+
+  installmentValue: {
+    title: 'Plan de pagos',
+    subtitle: 'Revisa tu pago mensual',
+    monthlyPayment: 'Pago mensual',
+    installments: '{count} mensualidades',
+    totalAmount: 'Total',
+    savings: 'Ahorras {amount}',
+    continue: 'Se ve bien',
+    heading: '¿Cuánto puedes pagar cada mes?',
+    clearButton: 'Limpiar',
+    tips: [
+      'Es solo una simulación. Puedes ajustar las cuotas en el siguiente paso.',
+      'Ingresa un monto que se ajuste a tu presupuesto. Te mostramos opciones cercanas.',
+      '¡Empieza con al menos {amount} para ver las ofertas disponibles!',
+    ],
+    loadingText: 'Buscando las mejores opciones...',
+    simulateWith: 'Simular con {symbol}{amount}',
+    simulate: 'Simular',
+    minimumError: 'El mínimo permitido es {amount}.\nPor favor ingresa un valor mayor.',
+  },
+  
+  dueDate: {
+    title: 'Elige fecha de pago',
+    subtitle: '¿Qué día te viene mejor?',
+    selectDate: 'Seleccionar fecha',
+    continue: 'Confirmar',
+    heading: '¿Cuándo puedes hacer el primer pago?',
+    paymentScheduleInfo: 'El pago se hace cada mes, en el día que elijas.',
+    sectionTitle: 'Fecha de pago',
+    otherDates: 'Otras fechas',
+    downpayment: 'Enganche',
+    installmentsOf: '{count} cuotas de',
+    amountOff: '{amount} de descuento',
+    totalAmount: 'Total: {amount}',
+    // Calendar keys
+    calendarTitle: 'Elige una fecha de pago',
+    calendarInfo: 'Los pagos siempre serán el día {day} de cada mes.',
+    calendarSelectDate: 'Seleccionar fecha',
+  },
+  
+  downPaymentValue: {
+    title: 'Monto del enganche',
+    subtitle: 'Aumenta para ahorrar más',
+    amount: 'Monto',
+    percentage: '{percent}%',
+    minimum: 'Mín: {amount}',
+    maximum: 'Máx: {amount}',
+    continue: 'Continuar',
+  },
+  
+  downPaymentDate: {
+    title: 'Fecha del enganche',
+    subtitle: '¿Cuándo puedes pagar?',
+    selectDate: 'Seleccionar fecha',
+    continue: 'Confirmar fecha',
+  },
+  
+  summary: {
+    title: 'Revisa y confirma',
+    subtitle: 'Verifica todos los detalles',
+    downPayment: 'Enganche',
+    downPaymentDate: 'Fecha de pago',
+    monthlyPayment: 'Pago mensual',
+    installments: '{count} mensualidades',
+    firstDueDate: 'Primer vencimiento',
+    totalAmount: 'Total',
+    totalSavings: 'Ahorro total',
+    confirm: 'Confirmar acuerdo',
+    yourMonthlyPayment: 'Tu pago mensual',
+    totalDiscount: '{amount} de descuento total',
+    renegotiationNote: 'Esta renegociación incluye montos vencidos de préstamos y tarjetas.',
+    sectionPaymentPlan: 'Tu plan de pagos',
+    changeButton: 'Cambiar',
+    numberOfInstallments: 'Número de cuotas',
+    installmentAmount: 'Monto de la cuota',
+    paymentAmount: 'Monto a pagar',
+    downpaymentDueDate: 'Fecha de vencimiento del enganche',
+    firstInstallmentDate: 'Vencimiento',
+    monthlyPaymentDate: 'Fecha de pago mensual',
+    everyDay: 'cada día {day}',
+    sectionBillingDetails: 'Detalles del financiamiento',
+    totalAmountFinanced: 'Total financiado',
+    totalInterest: 'Total de intereses',
+    monthlyInterest: 'Interés mensual',
+    totalAmountToPay: 'Total a pagar',
+    confirmNote: 'Al confirmar, aceptas los',
+    termsLinkText: 'Términos y Condiciones.',
+  },
+  
+  terms: {
+    title: 'Términos y Condiciones',
+    subtitle: 'Lee con atención antes de continuar',
+    accept: 'Acepto los términos',
+    decline: 'Rechazar',
+    readAll: 'Lee todos los términos',
+    heading: 'Información importante',
+    bodySubtitle: 'Al confirmar la renegociación, aceptas pagar mensualidades más intereses y cargos, según se informó en la pantalla anterior.',
+    confirmButton: 'Confirmar renegociación',
+    paragraphs: [
+      { bold: true, text: 'Sobre el pago de mensualidades' },
+      { text: 'Las mensualidades de tu deuda renegociada se debitarán automáticamente de tu cuenta durante el período de la renegociación.' },
+      { text: 'Recuerda asegurarte de tener fondos suficientes en tu cuenta antes de la fecha de vencimiento. Puedes depositar dinero a través de:' },
+      { text: 'SPEI: Hasta las 5 PM del día de vencimiento de la mensualidad.' },
+      { text: 'Transferencia bancaria: Hasta las 5 PM del día de vencimiento.' },
+      { bold: true, text: 'Pagos tardíos, intereses y penalizaciones' },
+      { text: 'Si tu cuenta no tiene fondos suficientes en la fecha de vencimiento, tu mensualidad estará vencida al día siguiente. Además del monto normal, pagarás:' },
+      { text: '- Intereses diarios acumulados al mismo valor informado en la pantalla anterior;' },
+      { text: '- Intereses moratorios del 1% mensual; - Penalización del 2% sobre la mensualidad vencida.' },
+      { text: 'Tu historial crediticio puede verse afectado si no mantienes las mensualidades al día.' },
+      { bold: true, text: 'Pagos anticipados' },
+      { text: 'Puedes anticipar pagos o liquidar toda la renegociación en cualquier momento. Las tasas de interés son siempre proporcionales.' },
+      { bold: true, text: 'Tarjeta de crédito' },
+      { text: 'Aceptar esta renegociación no garantiza que recuperarás tu tarjeta de crédito.' },
+      { bold: true, text: 'Consulta de información' },
+      { text: 'Al aceptar este contrato, autorizas la consulta de tu información en los sistemas de reporte de crédito correspondientes.' },
+      { text: 'En cuanto finalices la renegociación, el contrato completo será enviado a tu correo electrónico.' },
+    ],
+  },
+  
+  pin: {
+    title: 'Ingresa tu PIN',
+    subtitle: 'Confirma para continuar',
+    confirm: 'Verificar',
+  },
+  
+  loading: {
+    title: 'Procesando...',
+    subtitle: 'Solo un momento',
+    processing: 'Preparando tu acuerdo',
+    step1: 'Preparando tu nuevo comienzo',
+    step2: '¡Listo!',
+  },
+  
+  success: {
+    title: '¡Todo listo!',
+    subtitle: 'Tu acuerdo fue confirmado',
+    message: 'Recibirás una confirmación pronto',
+    done: 'Listo',
+  },
+  
+  feedback: {
+    title: '¿Cómo estuvo?',
+    subtitle: 'Ayúdanos a mejorar',
+    question: 'Califica tu experiencia',
+    optionGood: '¡Excelente!',
+    optionBad: 'Puede mejorar',
+    submit: 'Enviar feedback',
+    headline1: 'Un paso más',
+    headline2: 'para terminar',
+    body1: 'Tu plan está listo.',
+    body2: 'Asegura estas condiciones pagando la primera mensualidad a tiempo.',
+    makePayment: 'Hacer primer pago',
+    doLater: 'Hacerlo después',
+  },
+  
+  errors: {
+    generic: 'Algo salió mal. Intenta de nuevo.',
+    network: 'Verifica tu conexión',
+    invalidAmount: 'Monto inválido',
+    invalidDate: 'Fecha inválida',
+    required: 'Este campo es obligatorio',
+  },
+  
+  currency: {
+    symbol: '$',
+    code: 'MXN',
+  },
+  
+  dates: {
+    today: 'Hoy',
+    tomorrow: 'Mañana',
+    yesterday: 'Ayer',
+    monthShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+    monthLong: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'],
+    dayShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    dayLong: ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'],
+    weekdayInitial: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+  },
+};

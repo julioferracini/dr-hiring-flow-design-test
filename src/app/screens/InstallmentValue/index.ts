@@ -1,0 +1,1 @@
+export { default as InstallmentValueScreen } from './InstallmentValue';
