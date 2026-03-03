@@ -388,6 +388,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
             <p
               className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(26px,7vw,36px)] text-center tracking-[-1.08px] w-full whitespace-pre-wrap"
               style={{ fontWeight: 500, fontFeatureSettings: "'ss05'" }}
+              style={{ fontWeight: 600, fontFeatureSettings: "'ss05'" }}
             >
               {t("simulation.title")}
             </p>
@@ -759,6 +760,7 @@ function InputInstallments({
         <p
           className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
           style={{ fontWeight: 500, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
+          style={{ fontWeight: 600, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
         >
           <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={500} />
         </p>
