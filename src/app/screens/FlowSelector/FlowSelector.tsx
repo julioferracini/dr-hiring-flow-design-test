@@ -126,11 +126,11 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
                 className={`
                   w-full bg-white rounded-[16px] p-[20px]
                   flex items-center justify-between
-                  shadow-[0_2px_12px_rgba(0,0,0,0.08)]
+                  shadow-[0_1px_6px_rgba(0,0,0,0.06)]
                   transition-all duration-200
                   ${
                     isActive
-                      ? 'hover:shadow-[0_4px_20px_rgba(130,10,209,0.15)] active:scale-[0.98]'
+                      ? 'hover:shadow-[0_2px_10px_rgba(130,10,209,0.1)] active:scale-[0.98]'
                       : 'opacity-60 cursor-not-allowed'
                   }
                 `}
@@ -262,7 +262,7 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
                 {USE_CASES.map((uc) => (
                   <div
                     key={uc.slug}
-                    className="w-full bg-white rounded-[16px] p-[16px] flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.05)] opacity-55"
+                    className="w-full bg-white rounded-[16px] p-[16px] flex items-center justify-between shadow-[0_1px_4px_rgba(0,0,0,0.04)] opacity-55"
                   >
                     <div className="flex items-center gap-[14px]">
                       <div
