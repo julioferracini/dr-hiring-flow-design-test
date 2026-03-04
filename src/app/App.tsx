@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SimulationScreen, SuggestedScreen, InstallmentValueScreen, DueDateScreen, SummaryScreen, TermsConditionsScreen, SuccessScreen } from "./screens";
 import PinScreen from "./screens/Pin/PinScreen";
@@ -13,20 +13,37 @@ import type { Locale } from "./i18n/types";
 
 type ScreenType = "flowSelector" | "languageSelector" | "initialLoading" | "offerhub" | "installment" | "simulation" | "suggested" | "dueDate" | "summary" | "terms" | "loading" | "feedback" | "success";
 
+const VALID_LOCALES: Record<string, Locale> = {
+  "pt-br": "pt-BR", "pt": "pt-BR",
+  "es-mx": "es-MX", "es": "es-MX",
+  "en-us": "en-US", "en": "en-US",
+};
+
+function parseRoute(): { flow: "A" | "B" | null; lang: Locale | null } {
+  const path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+  const params = new URLSearchParams(window.location.search);
+
+  let flow: "A" | "B" | null = null;
+  if (path === "/flowa" || path === "/flow-a") flow = "A";
+  else if (path === "/flowb" || path === "/flow-b") flow = "B";
+
+  const langParam = params.get("lang")?.toLowerCase() ?? "";
+  const lang = VALID_LOCALES[langParam] ?? null;
+
+  return { flow, lang };
+}
+
 function AppContent() {
   const { setLocale } = useTranslation();
+  const routeApplied = useRef(false);
 
-  // Sempre começa no flowSelector a cada refresh
   const [currentScreen, setCurrentScreen] = useState<ScreenType>("flowSelector");
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
-  // ── History stack — garante que o back sempre volta para a tela anterior real
   const [history, setHistory] = useState<ScreenType[]>([]);
 
-  // ── Flow ativo (A ou B) — determina se installment leva a simulation ou suggested
   const [activeFlow, setActiveFlow] = useState<"A" | "B">("A");
 
   const [initialInstallments, setInitialInstallments] = useState(10);
-  // ── Valor alvo do InstallmentValue (usado pelo Flow B / SuggestedScreen)
   const [targetMonthlyValue, setTargetMonthlyValue] = useState(200);
   const [showPin, setShowPin] = useState(false);
   const [simulationData, setSimulationData] = useState({
@@ -39,6 +56,25 @@ function AppContent() {
     downpaymentFixed: false,
   });
   const [dueDate, setDueDate] = useState(new Date());
+
+  // ── URL routing: read pathname + query params on mount ──
+  useEffect(() => {
+    if (routeApplied.current) return;
+    routeApplied.current = true;
+
+    const { flow, lang } = parseRoute();
+    if (!flow) return;
+
+    setActiveFlow(flow);
+
+    if (lang) {
+      setLocale(lang);
+      setCurrentScreen("initialLoading");
+    } else {
+      setDirection("forward");
+      setCurrentScreen("languageSelector");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-navigate após loading inicial
   useEffect(() => {
@@ -176,6 +212,7 @@ function AppContent() {
   const handleLoadingComplete = () => navigateForward("feedback");
 
   const handleRestartPrototype = () => {
+    window.history.replaceState(null, "", "/");
     setHistory([]);
     setDirection("forward");
     setCurrentScreen("flowSelector");
@@ -187,6 +224,7 @@ function AppContent() {
   };
 
   const handleOfferHubClose = () => {
+    window.history.replaceState(null, "", "/");
     setHistory([]);
     setCurrentScreen("flowSelector");
   };
@@ -256,6 +294,7 @@ function AppContent() {
               <LanguageSelector
                 onSelectLanguage={handleLanguageSelect}
                 onBack={() => {
+                  window.history.replaceState(null, "", "/");
                   setDirection("backward");
                   setCurrentScreen("flowSelector");
                 }}
