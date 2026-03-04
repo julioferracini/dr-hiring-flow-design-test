@@ -74,7 +74,7 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
         <div className="flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] size-full">
           <div
             className="flex flex-col font-semibold justify-center leading-[0] text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap"
-            style={{ fontFamily: "'SF Pro Text', sans-serif" }}
+            style={{ fontFamily: tokens.fonts.sfPro }}
           >
             <p className="leading-[20px]">09:07</p>
           </div>
@@ -89,10 +89,10 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1
-            className="text-white text-[32px] leading-[1.2] mb-[12px]"
-            style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 800, letterSpacing: '-0.96px' }}
+            className="text-white text-[24px] leading-[1.2] mb-[6px]"
+            style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 800, letterSpacing: '-0.72px' }}
           >
-            Debt Resolution
+            Hiring (negotiation) Flow
           </h1>
           <p
             className="text-white/80 text-[16px] leading-[1.4]"

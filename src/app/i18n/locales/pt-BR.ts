@@ -73,7 +73,7 @@ export const ptBR: Translations = {
   },
   
   simulation: {
-    title: 'Encontre o melhor pra você',
+    title: 'Encontre o melhor plano pra você',
     subtitle: 'Detalhes do plano',
     installments: 'Número de parcelas',
     installmentsCount: '{count}x',
@@ -238,8 +238,8 @@ export const ptBR: Translations = {
   },
   
   pin: {
-    title: 'Digite sua senha',
-    subtitle: 'Confirme pra continuar',
+    title: 'Digite sua senha de 4 dígitos',
+    subtitle: '',
     confirm: 'Verificar',
   },
   

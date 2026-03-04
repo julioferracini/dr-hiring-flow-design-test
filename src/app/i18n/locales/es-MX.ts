@@ -237,8 +237,8 @@ export const esMX: Translations = {
   },
 
   pin: {
-    title: 'Ingresa tu contraseña',
-    subtitle: 'Confirma para continuar',
+    title: 'Ingresa tu PIN de 4 dígitos',
+    subtitle: '',
     confirm: 'Verificar',
   },
 

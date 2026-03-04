@@ -54,10 +54,10 @@ export default function LanguageSelector({ onSelectLanguage, onBack }: LanguageS
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1
-            className="text-white text-[32px] font-bold leading-[1.2] mb-[12px]"
-            style={{ fontFamily: tokens.fonts.nuSans }}
+            className="text-white text-[24px] font-bold leading-[1.2] mb-[6px]"
+            style={{ fontFamily: tokens.fonts.nuSans, letterSpacing: '-0.72px' }}
           >
-            Debt Resolution
+            Hiring (negotiation) Flow
           </h1>
           <p
             className="text-white/80 text-[16px] leading-[1.4]"

@@ -279,7 +279,7 @@ function MoneyInput({ value, onChange, isVisible, onClear }: MoneyInputProps) {
                 </div>
               </div>
             </div>
-            <div className="content-stretch flex flex-col h-[40px] items-end justify-center min-w-[40px] shrink-0">
+            <div className="content-stretch flex flex-col h-[40px] items-end justify-center min-w-[40px] shrink-0 relative z-20">
               <AnimatePresence>
                 {hasValue && (
                   <motion.button

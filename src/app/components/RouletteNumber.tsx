@@ -26,7 +26,7 @@ export default function RouletteNumber({
   }, [value, delay]);
 
   return (
-    <span className={`inline-block ${className}`} style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay }}>
+    <span className={`inline-block ${className}`} style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay, letterSpacing: "-1.08px" }}>
       <AnimatePresence mode="wait">
         <motion.span
           key={`${displayValue}-${key}`}
@@ -39,7 +39,7 @@ export default function RouletteNumber({
             damping: 30,
           }}
           className="inline-block"
-          style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay }}
+          style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay, letterSpacing: "-1.08px" }}
         >
           {displayValue}
         </motion.span>

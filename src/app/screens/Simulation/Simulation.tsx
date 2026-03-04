@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "motion/react";
 import svgPaths from "../../../imports/svg-3llmf9dm72";
 import { useTranslation } from "../../i18n/context";
+import { tokens } from "../../constants";
 import { CURRENCY_CONFIGS } from "../../constants/currencies";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
 import { useFinancialCalculator } from "../../hooks/useFinancialCalculator";
@@ -153,7 +154,7 @@ function CalcSummarySheet({
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
               <h2
                 style={{
-                  fontFamily: "'Graphik', sans-serif",
+                  fontFamily: tokens.fonts.graphik,
                   fontWeight: 600,
                   fontSize: "22px",
                   letterSpacing: "-0.66px",
@@ -197,7 +198,7 @@ function CalcSummarySheet({
                   <div className="flex items-center justify-between py-[14px] gap-[12px]">
                     <span
                       style={{
-                        fontFamily: "'Nu_Sans_Text', sans-serif",
+                        fontFamily: tokens.fonts.nuSans,
                         fontWeight: row.isSavings ? 500 : 400,
                         fontSize: "14px",
                         color: row.isSavings ? "#1f0230" : "rgba(0,0,0,0.52)",
@@ -209,7 +210,7 @@ function CalcSummarySheet({
                     </span>
                     <span
                       style={{
-                        fontFamily: "'Nu_Sans_Text', sans-serif",
+                        fontFamily: tokens.fonts.nuSans,
                         fontWeight: row.highlight ? 600 : 600,
                         fontSize: "14px",
                         letterSpacing: "-0.14px",
@@ -246,7 +247,7 @@ function CalcSummarySheet({
               >
                 <span
                   style={{
-                    fontFamily: "'Nu_Sans_Text', sans-serif",
+                    fontFamily: tokens.fonts.nuSans,
                     fontWeight: 600,
                     fontSize: "15px",
                     color: "#fff",
@@ -408,8 +409,9 @@ function AnimatedNumber({
   fontSize = 44,
   fontWeight = 500,
   color = "#1f0230",
-  fontFamily = "Graphik",
+  fontFamily = tokens.fonts.graphik,
   letterSpacing = "-1px",
+  useGraphikFeatures = true,
 }: {
   value: string;
   delay?: number;
@@ -418,6 +420,7 @@ function AnimatedNumber({
   color?: string;
   fontFamily?: string;
   letterSpacing?: string;
+  useGraphikFeatures?: boolean;
 }) {
   const prevValueRef = useRef(value);
   const [direction, setDirection] = useState<"up" | "down">("up");
@@ -437,9 +440,9 @@ function AnimatedNumber({
     fontSize: `${fontSize}px`,
     fontWeight,
     color,
-    fontFamily: `'${fontFamily}', sans-serif`,
+    fontFamily,
     fontVariantNumeric: "tabular-nums",
-    fontFeatureSettings: fontFamily === "Graphik" ? "'ss05', 'tnum'" : "'tnum'",
+    fontFeatureSettings: useGraphikFeatures ? "'ss05', 'tnum'" : "'tnum'",
     letterSpacing,
     lineHeight: `${lineH}px`,
     whiteSpace: "nowrap",
@@ -500,6 +503,7 @@ function CurrencyValue({
   color,
   fontFamily,
   letterSpacing,
+  useGraphikFeatures = false,
 }: {
   symbol?: string;
   value: string;
@@ -509,20 +513,20 @@ function CurrencyValue({
   color: string;
   fontFamily: string;
   letterSpacing: string;
+  useGraphikFeatures?: boolean;
 }) {
   const { translations } = useTranslation();
   const resolvedSymbol = symbol ?? translations.currency.symbol;
   const lineH = Math.ceil(fontSize * 1.2);
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
-      {/* Static currency symbol */}
       <span
         style={{
           fontSize: `${fontSize}px`,
           fontWeight,
           color,
-          fontFamily: `'${fontFamily}', sans-serif`,
-          fontFeatureSettings: fontFamily === "Graphik" ? "'ss05'" : undefined,
+          fontFamily,
+          fontFeatureSettings: useGraphikFeatures ? "'ss05'" : undefined,
           letterSpacing,
           lineHeight: `${lineH}px`,
           display: "inline-block",
@@ -539,6 +543,7 @@ function CurrencyValue({
         color={color}
         fontFamily={fontFamily}
         letterSpacing={letterSpacing}
+        useGraphikFeatures={useGraphikFeatures}
       />
     </span>
   );
@@ -560,10 +565,10 @@ function InputDownpayment({ value, onClick }: { value: string; onClick: () => vo
         <CurrencyValue
           value={value}
           fontSize={24}
-          fontWeight={500}
+          fontWeight={600}
           color="#1f002f"
-          fontFamily="Nu_Sans_Display"
-          letterSpacing="0px"
+          fontFamily={tokens.fonts.nuSansDisplay}
+          letterSpacing="-2px"
         />
       </div>
       <div className="bg-[#efefef] h-[4px] shrink-0 w-[min(140px,40vw)]" data-name="Divider" />
@@ -603,10 +608,11 @@ function InputMonthlyPayment({
             value={value}
             delay={0.05}
             fontSize={44}
-            fontWeight={500}
+            fontWeight={600}
             color="#1f002f"
-            fontFamily="Graphik"
-            letterSpacing="-1.32px"
+            fontFamily={tokens.fonts.graphik}
+            letterSpacing="-2px"
+            useGraphikFeatures
           />
         </div>
         <div
@@ -638,10 +644,10 @@ function InputMonthlyPayment({
           value={value}
           delay={0.05}
           fontSize={24}
-          fontWeight={500}
+          fontWeight={600}
           color="#1f002f"
-          fontFamily="Nu_Sans_Display"
-          letterSpacing="0px"
+          fontFamily={tokens.fonts.nuSansDisplay}
+          letterSpacing="-2px"
         />
       </div>
       <div className="bg-[#efefef] h-[4px] shrink-0 w-[min(140px,40vw)]" data-name="Divider" />
@@ -758,9 +764,9 @@ function InputInstallments({
       >
         <p
           className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
-          style={{ fontWeight: 500, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
+          style={{ fontWeight: 600, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
         >
-          <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={500} />
+          <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={600} />
         </p>
       </motion.div>
       <div
@@ -797,7 +803,7 @@ function InputInstallments({
           <div
             className="flex items-center justify-center gap-[5px] w-full"
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontSize: "14px",
               color: "#0c7a3a",
               letterSpacing: "0.14px",
@@ -818,8 +824,9 @@ function InputInstallments({
                 fontSize={14}
                 fontWeight={700}
                 color="#0c7a3a"
-                fontFamily="Nu_Sans_Text"
+                fontFamily={tokens.fonts.nuSans}
                 letterSpacing="0px"
+                useGraphikFeatures={false}
               />
             </span>
           </div>
@@ -989,7 +996,7 @@ function InstallmentsSlider({
         <div className="w-full flex items-center justify-between px-[4px]">
           <span
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontWeight: 600,
               fontSize: "12px",
               color: "rgba(31,2,48,0.62)",
@@ -1002,7 +1009,7 @@ function InstallmentsSlider({
           </span>
           <span
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontWeight: 600,
               fontSize: "12px",
               color: "rgba(31,2,48,0.62)",
@@ -1051,11 +1058,12 @@ function CheckoutBottomBar({
         >
           <p
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontWeight: 600,
               fontSize: "18px",
               color: "#1f0230",
               lineHeight: "1.3",
+              letterSpacing: "-0.54px",
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
@@ -1066,11 +1074,11 @@ function CheckoutBottomBar({
           </p>
           <p
             style={{
-              fontFamily: "'Graphik', sans-serif",
+              fontFamily: tokens.fonts.graphik,
               fontWeight: 500,
               fontSize: "16px",
               color: "rgba(31,2,48,0.62)",
-              letterSpacing: "-0.16px",
+              letterSpacing: "-0.48px",
               textDecoration: "line-through",
               lineHeight: "1.5",
               fontFeatureSettings: "'ss05'",
@@ -1096,7 +1104,7 @@ function CheckoutBottomBar({
         >
           <span
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontWeight: 600,
               fontSize: "14px",
               color: "#fff",
@@ -1385,7 +1393,7 @@ function BottomSheetEditor({
             <div className="flex items-center justify-between px-[20px] pt-[12px] pb-[4px]">
               <h3
                 style={{
-                  fontFamily: "'Graphik', sans-serif",
+                  fontFamily: tokens.fonts.graphik,
                   fontWeight: 500,
                   fontSize: "20px",
                   letterSpacing: "-0.6px",
@@ -1418,7 +1426,7 @@ function BottomSheetEditor({
                 {type !== "installments" && (
                   <span
                     style={{
-                      fontFamily: "'Graphik', sans-serif",
+                      fontFamily: tokens.fonts.graphik,
                       fontWeight: 500,
                       fontSize: "32px",
                       color: "#1f0230",
@@ -1435,7 +1443,7 @@ function BottomSheetEditor({
                   value={formatDisplay()}
                   autoFocus
                   style={{
-                    fontFamily: "'Graphik', sans-serif",
+                    fontFamily: tokens.fonts.graphik,
                     fontWeight: 500,
                     fontSize: "40px",
                     color: "#1f0230",
@@ -1453,7 +1461,7 @@ function BottomSheetEditor({
                 {type === "installments" && (
                   <span
                     style={{
-                      fontFamily: "'Nu_Sans_Text', sans-serif",
+                      fontFamily: tokens.fonts.nuSans,
                       fontWeight: 400,
                       fontSize: "18px",
                       color: "rgba(0,0,0,0.44)",
@@ -1468,7 +1476,7 @@ function BottomSheetEditor({
               {(minValue !== undefined || maxValue !== undefined) && (
                 <p
                   style={{
-                    fontFamily: "'Nu_Sans_Text', sans-serif",
+                    fontFamily: tokens.fonts.nuSans,
                     fontWeight: 400,
                     fontSize: "12px",
                     color: "rgba(0,0,0,0.4)",
@@ -1497,7 +1505,7 @@ function BottomSheetEditor({
                   <div className="flex flex-col items-start">
                     <span
                       style={{
-                        fontFamily: "'Nu_Sans_Text', sans-serif",
+                        fontFamily: tokens.fonts.nuSans,
                         fontWeight: 500,
                         fontSize: "13px",
                         color: localFixed ? "#820ad1" : "rgba(0,0,0,0.56)",
@@ -1508,7 +1516,7 @@ function BottomSheetEditor({
                     </span>
                     <span
                       style={{
-                        fontFamily: "'Nu_Sans_Text', sans-serif",
+                        fontFamily: tokens.fonts.nuSans,
                         fontWeight: 400,
                         fontSize: "11px",
                         color: localFixed ? "rgba(130,10,209,0.5)" : "rgba(0,0,0,0.32)",
@@ -1571,7 +1579,7 @@ function BottomSheetEditor({
                       >
                         <span
                           style={{
-                            fontFamily: "'Nu_Sans_Text', sans-serif",
+                            fontFamily: tokens.fonts.nuSans,
                             fontWeight: key === "⌫" ? 400 : 600,
                             fontSize: key === "⌫" ? "20px" : "20px",
                             color: key === "⌫" ? "#820ad1" : "#1f0230",
@@ -1598,7 +1606,7 @@ function BottomSheetEditor({
               >
                 <span
                   style={{
-                    fontFamily: "'Nu_Sans_Text', sans-serif",
+                    fontFamily: tokens.fonts.nuSans,
                     fontWeight: 600,
                     fontSize: "15px",
                     color: "#fff",
