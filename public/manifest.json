@@ -1,0 +1,9 @@
+{
+  "name": "Negotiation Flow Prototype",
+  "short_name": "NegFlow",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#820ad1",
+  "orientation": "portrait"
+}

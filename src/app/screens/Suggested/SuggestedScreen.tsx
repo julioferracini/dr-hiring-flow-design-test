@@ -840,7 +840,6 @@ export default function SuggestedScreen({
         <ScreenNavBar
           variant="back"
           onAction={onBack}
-          className="mt-[44px]"
           rightAction={<InfoButton onClick={() => setShowCalcSummary(true)} />}
         />
 

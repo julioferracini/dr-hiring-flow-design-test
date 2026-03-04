@@ -157,7 +157,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
     overflow-x: hidden;
     position: fixed;
   }
@@ -169,7 +170,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -179,7 +181,8 @@
 
   #root {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     position: relative;
   }

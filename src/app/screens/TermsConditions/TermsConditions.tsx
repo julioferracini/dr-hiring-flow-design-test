@@ -3,20 +3,9 @@ import { colors, tokens } from "../../constants";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
 import BottomActionBar from "../../components/BottomActionBar";
 import { useTranslation } from "../../i18n/context";
-
 interface TermsConditionsProps {
   onBack?: () => void;
   onConfirm?: () => void;
-}
-
-function StatusBar() {
-  return (
-    <div className="h-[44px] relative shrink-0 w-full" data-name="Status Bar">
-      <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
-        {/* Empty - spacing only */}
-      </div>
-    </div>
-  );
 }
 
 function TopBar({ onBack }: { onBack?: () => void }) {
@@ -27,7 +16,6 @@ function TopBar({ onBack }: { onBack?: () => void }) {
 function MagicTopBar({ onBack }: { onBack?: () => void }) {
   return (
     <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
-      <StatusBar />
       <TopBar onBack={onBack} />
     </div>
   );

@@ -6,46 +6,6 @@ import BottomActionBar from "../../components/BottomActionBar";
 import DatePickerCalendar from "../../components/DatePickerCalendar";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
 import { useTranslation } from "../../i18n/context";
-
-function TimeWrapper() {
-  return (
-    <div className="content-stretch flex items-center relative shrink-0" data-name="Time Wrapper">
-      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-center tracking-[-0.24px] whitespace-nowrap" style={{ fontFamily: tokens.fonts.sfPro, color: colors.text.primary }}>
-        <p className="leading-[20px]">11:08</p>
-      </div>
-    </div>
-  );
-}
-
-function Carrier() {
-  return (
-    <div className="h-[20px] relative shrink-0 w-[67.661px]" data-name="Carrier">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 67.6611 20">
-        <g id="Carrier">
-          <path d={svgPaths.p25c9c700} fill={colors.text.primary} id="Signal" />
-          <path d={svgPaths.p8fa51f0} fill={colors.text.primary} id="Wi-Fi" />
-          <g id="Battery">
-            <rect height="10.3333" id="Border" opacity="0.35" rx="3.5" stroke={colors.text.primary} width="21" x="43.833" y="4.83333" />
-            <path d={svgPaths.p2deda380} fill={colors.text.primary} id="Cap" opacity="0.4" />
-            <rect fill={colors.text.primary} height="7.33333" id="Capacity" rx="2.3" width="18" x="45.333" y="6.33333" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function StatusBar() {
-  return (
-    <div className="h-[44px] relative shrink-0 w-full opacity-0" data-name="Status Bar">
-      <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
-        <TimeWrapper />
-        <Carrier />
-      </div>
-    </div>
-  );
-}
-
 function MagicIcon() {
   return (
     <div className="relative shrink-0 size-[20px]" data-name="[Magic] Icon">
@@ -88,7 +48,6 @@ function Header({ onBack }: { onBack?: () => void }) {
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
         <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
-          <StatusBar />
           <TopBar onBack={onBack} />
         </div>
         <div className="relative shrink-0 w-full" data-name="Title">

@@ -69,18 +69,6 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
 
   return (
     <div className="absolute inset-0 bg-white flex flex-col">
-      {/* Status Bar */}
-      <div className="h-[44px] bg-[#820AD1] w-full">
-        <div className="flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] size-full">
-          <div
-            className="flex flex-col font-semibold justify-center leading-[0] text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap"
-            style={{ fontFamily: tokens.fonts.sfPro }}
-          >
-            <p className="leading-[20px]">09:07</p>
-          </div>
-        </div>
-      </div>
-
       {/* Header */}
       <div className="bg-[#820AD1] px-[24px] pt-[24px] pb-[48px]">
         <motion.div
@@ -92,7 +80,7 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
             className="text-white text-[24px] leading-[1.2] mb-[6px]"
             style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 800, letterSpacing: '-0.72px' }}
           >
-            Hiring (negotiation) Flow
+            Negotiation Flow Prototype (Emulator)
           </h1>
           <p
             className="text-white/80 text-[16px] leading-[1.4]"

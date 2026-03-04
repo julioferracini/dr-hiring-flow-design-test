@@ -182,7 +182,6 @@ export default function FeedbackScreen({ onMakePayment, onDoLater, onClose }: Fe
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <div className="h-[44px] pb-[10px] pl-[32px] pr-[24px] pt-[18px]" />
         <div className="h-[64px] relative">
           <motion.button
             className="absolute left-[10px] top-1/2 -translate-y-1/2 size-[44px] flex items-center justify-center cursor-pointer"
