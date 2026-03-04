@@ -45,7 +45,7 @@ export function ScreenNavBar({
     >
       {/* ── Botão de ação (esquerda) ── */}
       <motion.button
-        className="absolute left-[4px] top-1/2 -translate-y-1/2 size-[44px] flex items-center justify-center rounded-full cursor-pointer"
+        className="absolute left-[8px] top-1/2 -translate-y-1/2 size-[44px] flex items-center justify-center rounded-full cursor-pointer"
         onClick={onAction}
         initial={{ backgroundColor: "rgba(31, 2, 48, 0)" }}
         whileHover={{ backgroundColor: "rgba(31, 2, 48, 0.05)" }}
@@ -84,7 +84,7 @@ export function ScreenNavBar({
 
       {/* ── Ação direita (opcional) ── */}
       {rightAction && (
-        <div className="absolute right-[4px] top-1/2 -translate-y-1/2 z-10">
+        <div className="absolute right-[8px] top-1/2 -translate-y-1/2 z-10">
           {rightAction}
         </div>
       )}

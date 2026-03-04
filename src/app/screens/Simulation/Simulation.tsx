@@ -154,7 +154,7 @@ function CalcSummarySheet({
               <h2
                 style={{
                   fontFamily: "'Graphik', sans-serif",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: "22px",
                   letterSpacing: "-0.66px",
                   color: "#1f0230",
@@ -387,6 +387,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
           <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
             <p
               className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(26px,7vw,36px)] text-center tracking-[-1.08px] w-full whitespace-pre-wrap"
+              style={{ fontWeight: 500, fontFeatureSettings: "'ss05'" }}
               style={{ fontWeight: 600, fontFeatureSettings: "'ss05'" }}
             >
               {t("simulation.title")}
@@ -406,7 +407,7 @@ function AnimatedNumber({
   value,
   delay = 0,
   fontSize = 44,
-  fontWeight = 600,
+  fontWeight = 500,
   color = "#1f0230",
   fontFamily = "Graphik",
   letterSpacing = "-1px",
@@ -560,7 +561,7 @@ function InputDownpayment({ value, onClick }: { value: string; onClick: () => vo
         <CurrencyValue
           value={value}
           fontSize={24}
-          fontWeight={600}
+          fontWeight={500}
           color="#1f002f"
           fontFamily="Nu_Sans_Display"
           letterSpacing="0px"
@@ -603,7 +604,7 @@ function InputMonthlyPayment({
             value={value}
             delay={0.05}
             fontSize={44}
-            fontWeight={600}
+            fontWeight={500}
             color="#1f002f"
             fontFamily="Graphik"
             letterSpacing="-1.32px"
@@ -638,7 +639,7 @@ function InputMonthlyPayment({
           value={value}
           delay={0.05}
           fontSize={24}
-          fontWeight={600}
+          fontWeight={500}
           color="#1f002f"
           fontFamily="Nu_Sans_Display"
           letterSpacing="0px"
@@ -758,9 +759,10 @@ function InputInstallments({
       >
         <p
           className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
+          style={{ fontWeight: 500, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
           style={{ fontWeight: 600, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
         >
-          <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={600} />
+          <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={500} />
         </p>
       </motion.div>
       <div
@@ -1067,7 +1069,7 @@ function CheckoutBottomBar({
           <p
             style={{
               fontFamily: "'Graphik', sans-serif",
-              fontWeight: 600,
+              fontWeight: 500,
               fontSize: "16px",
               color: "rgba(31,2,48,0.62)",
               letterSpacing: "-0.16px",
@@ -1167,7 +1169,7 @@ function DownpaymentAlertSheet({ onClose }: { onClose: () => void }) {
           <h3
             className="text-center mb-3 font-graphik text-[#1f0230]"
             style={{
-              fontWeight: 600,
+              fontWeight: 500,
               fontFeatureSettings: "'ss05'",
               fontSize: "24px",
               letterSpacing: "-0.72px",
@@ -1386,7 +1388,7 @@ function BottomSheetEditor({
               <h3
                 style={{
                   fontFamily: "'Graphik', sans-serif",
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: "20px",
                   letterSpacing: "-0.6px",
                   color: "#1f0230",
@@ -1419,7 +1421,7 @@ function BottomSheetEditor({
                   <span
                     style={{
                       fontFamily: "'Graphik', sans-serif",
-                      fontWeight: 600,
+                      fontWeight: 500,
                       fontSize: "32px",
                       color: "#1f0230",
                       letterSpacing: "-0.96px",
@@ -1436,7 +1438,7 @@ function BottomSheetEditor({
                   autoFocus
                   style={{
                     fontFamily: "'Graphik', sans-serif",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     fontSize: "40px",
                     color: "#1f0230",
                     letterSpacing: "-1.2px",
@@ -1498,7 +1500,7 @@ function BottomSheetEditor({
                     <span
                       style={{
                         fontFamily: "'Nu_Sans_Text', sans-serif",
-                        fontWeight: 600,
+                        fontWeight: 500,
                         fontSize: "13px",
                         color: localFixed ? "#820ad1" : "rgba(0,0,0,0.56)",
                         letterSpacing: "-0.13px",

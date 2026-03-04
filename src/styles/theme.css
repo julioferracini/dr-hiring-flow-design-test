@@ -85,6 +85,12 @@
   --font-nu-display: var(--font-nu-sans-display);
   --font-sf-pro: var(--font-sf-pro);
 
+  /* ── Font weight semantic tokens (from Figma design system) ──
+     Display/heading values: Medium (500)  → Nu_Sans_Display:Medium, Graphik:Medium
+     Labels/badges/buttons:  Semibold (600) → Nu_Sans_Text:Semibold
+     Body/row values:        Regular (400)  → Nu_Sans_Text:Regular, Graphik:Regular
+  ── */
+
   /* ── Project color tokens (use as text-nu-purple, bg-nu-gray, etc.) ── */
   --color-nu-purple: #820ad1;
   --color-nu-purple-light: rgba(130, 10, 209, 0.05);

@@ -39,7 +39,7 @@ export default function RouletteNumber({
             damping: 30,
           }}
           className="inline-block"
-          style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay, fontWeight: 600 }}
+          style={{ fontFeatureSettings: "'lnum', 'pnum'", fontFamily: tokens.fonts.nuSansDisplay }}
         >
           {displayValue}
         </motion.span>
