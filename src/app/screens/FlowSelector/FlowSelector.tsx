@@ -10,7 +10,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, ChevronDown, SlidersHorizontal, Sparkles, CreditCard, Landmark } from 'lucide-react';
+import { ChevronRight, ChevronDown, SlidersHorizontal, Sparkles, CreditCard, Landmark, Handshake } from 'lucide-react';
 import { tokens } from '../../constants';
 
 interface FlowSelectorProps {
@@ -36,22 +36,30 @@ const FLOWS = [
 
 const USE_CASES = [
   {
+    slug: 'debt-resolution',
+    icon: 'handshake' as const,
+    label: 'Debt Resolution',
+    sublabels: ['Collections and renegotiation products'],
+    status: 'soon' as const,
+  },
+  {
     slug: 'credit-card',
     icon: 'credit-card' as const,
     label: 'Credit Card',
-    sublabels: ['Cartão de crédito', 'Tarjeta de crédito'],
+    sublabels: ['Card hiring flows and use cases'],
     status: 'soon' as const,
   },
   {
     slug: 'lending',
     icon: 'landmark' as const,
     label: 'Lending',
-    sublabels: ['Empréstimo', 'Préstamo'],
+    sublabels: ['Loans and financing use cases'],
     status: 'soon' as const,
   },
 ];
 
 const USE_CASE_ICONS: Record<string, React.ReactNode> = {
+  'handshake': <Handshake className="size-[18px]" strokeWidth={2} />,
   'credit-card': <CreditCard className="size-[18px]" strokeWidth={2} />,
   'landmark': <Landmark className="size-[18px]" strokeWidth={2} />,
 };
@@ -96,17 +104,19 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
       </div>
 
       {/* Flow List */}
-      <div className="flex-1 overflow-y-auto px-[24px] pt-[32px] pb-[24px]">
-        <motion.div
-          className="space-y-[12px]"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: { staggerChildren: 0.08 },
-            },
-          }}
+      <div className="flex-1 overflow-y-auto px-[24px] pt-[28px] pb-[24px]">
+        {/* Section label */}
+        <motion.p
+          className="text-[#1f0230]/40 text-[11px] font-semibold uppercase tracking-[0.8px] px-[4px] mb-[14px]"
+          style={{ fontFamily: tokens.fonts.nuSans }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
         >
+          Mockups – experiments
+        </motion.p>
+
+        <div className="space-y-[12px]">
           {FLOWS.map((flow, index) => {
             const isActive = flow.status === 'active';
 
@@ -126,14 +136,9 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
                 `}
                 onClick={() => isActive && onSelectFlow(flow.id)}
                 disabled={!isActive}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-                  },
-                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: index * 0.08 + 0.3 }}
                 whileHover={isActive ? { scale: 1.02 } : {}}
                 whileTap={isActive ? { scale: 0.98 } : {}}
               >
@@ -208,15 +213,25 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
               </motion.button>
             );
           })}
-        </motion.div>
+        </div>
 
-        {/* Use Case Tests — collapsible section */}
+        {/* Product lines — collapsible section */}
         <motion.div
-          className="mt-[24px]"
+          className="mt-[28px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
+          <motion.p
+            className="text-[#1f0230]/40 text-[11px] font-semibold uppercase tracking-[0.8px] px-[4px] mb-[2px]"
+            style={{ fontFamily: tokens.fonts.nuSans }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+          >
+            Product lines
+          </motion.p>
+
           <button
             className="w-full flex items-center justify-between px-[4px] py-[12px] cursor-pointer"
             onClick={() => setUseCasesOpen(prev => !prev)}
@@ -296,19 +311,7 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
         </motion.div>
 
         {/* Footer note */}
-        <motion.div
-          className="mt-[24px] text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-        >
-          <p
-            className="text-[#1f0230]/40 text-[14px] leading-[1.5]"
-            style={{ fontFamily: tokens.fonts.nuSans }}
-          >
-            Both flows available
-          </p>
-        </motion.div>
+
       </div>
     </div>
   );

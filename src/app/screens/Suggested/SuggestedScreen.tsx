@@ -510,7 +510,7 @@ function AllOptionsSheet({
                 className="text-[#1f0230] text-[28px] tracking-[-0.84px] whitespace-pre-wrap"
                 style={{
                   fontFamily: tokens.fonts.nuSans,
-                  fontWeight: 500,
+                  fontWeight: 600,
                   lineHeight: 1.2,
                 }}
               >
@@ -668,7 +668,7 @@ function CalcSummarySheet({
               <div className="w-[36px] h-[5px] rounded-full" style={{ backgroundColor: "rgba(0,0,0,0.12)" }} />
             </div>
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
-              <h2 style={{ fontFamily: "'Graphik', sans-serif", fontWeight: 500, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
+              <h2 style={{ fontFamily: "'Graphik', sans-serif", fontWeight: 600, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
               <motion.button className="size-[36px] flex items-center justify-center rounded-full" style={{ backgroundColor: "rgba(31,2,48,0)" }} onClick={onClose} whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }} whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }} transition={{ duration: 0.12 }} aria-label="Close">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z" fill="#1F0230" fillOpacity="0.62" /></svg>
               </motion.button>
@@ -832,7 +832,7 @@ export default function SuggestedScreen({
     <div className="absolute inset-0 bg-white flex flex-col overflow-hidden">
       {/* ── Header ── */}
       <motion.div
-        className="shrink-0 w-full"
+        className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md shrink-0 w-full"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
@@ -846,8 +846,8 @@ export default function SuggestedScreen({
 
         <div className="px-[20px] pt-[12px] pb-[20px]">
           <p
-            className="text-[rgba(0,0,0,0.96)] text-[36px] tracking-[-1.08px] whitespace-pre-wrap"
-            style={{ fontFamily: tokens.fonts.graphik, fontWeight: 500, lineHeight: 1.1 }}
+            className="text-[rgba(0,0,0,0.96)] text-[32px] tracking-[-0.96px] whitespace-pre-wrap"
+            style={{ fontFamily: tokens.fonts.graphik, fontWeight: 600, lineHeight: 1.1 }}
           >
             {t.title}
           </p>

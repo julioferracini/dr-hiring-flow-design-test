@@ -87,7 +87,7 @@ function TopBar({ onBack }: { onBack?: () => void }) {
 
 function MagicTopBar({ onBack }: { onBack?: () => void }) {
   return (
-    <div className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
+    <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
       <StatusBar />
       <TopBar onBack={onBack} />
     </div>
@@ -101,7 +101,7 @@ function Title({ hasDownpayment }: { hasDownpayment?: boolean }) {
     <div className="relative shrink-0 w-full" data-name="Title">
       <div className="overflow-clip rounded-[inherit] size-full">
         <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
-          <p className="font-medium leading-[1.1] not-italic relative shrink-0 text-[36px] tracking-[-1.08px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: tokens.fontWeights.medium, color: colors.text.primary }}>
+          <p className="font-semibold leading-[1.1] not-italic relative shrink-0 text-[32px] tracking-[-0.96px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: 600, color: colors.text.primary }}>
             {hasDownpayment ? 'When can you make the Downpayment?' : 'When can you make the first payment?'}
           </p>
         </div>
@@ -129,7 +129,7 @@ function MagicHeader({ onBack, hasDownpayment }: { onBack?: () => void; hasDownp
 
 function Header({ onBack, hasDownpayment }: { onBack?: () => void; hasDownpayment?: boolean }) {
   return (
-    <div className="bg-[rgba(255,255,255,0.64)] content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
+    <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
       <MagicHeader onBack={onBack} hasDownpayment={hasDownpayment} />
     </div>
   );

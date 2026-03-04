@@ -32,8 +32,8 @@ function parseRoute(): RouteInfo {
   let flow: "A" | "B" | null = null;
   let useCase: string | null = null;
 
-  if (path === "/flowa" || path === "/flow-a") flow = "A";
-  else if (path === "/flowb" || path === "/flow-b") flow = "B";
+  if (path === "/flowa" || path === "/flow-a" || path.startsWith("/flowa/") || path.startsWith("/flow-a/")) flow = "A";
+  else if (path === "/flowb" || path === "/flow-b" || path.startsWith("/flowb/") || path.startsWith("/flow-b/")) flow = "B";
   else if (path.startsWith("/usecase/")) useCase = path.replace("/usecase/", "");
 
   const langParam = params.get("lang")?.toLowerCase() ?? "";
@@ -42,9 +42,26 @@ function parseRoute(): RouteInfo {
   return { flow, useCase, lang };
 }
 
+const SCREEN_PATHS: Record<ScreenType, string> = {
+  flowSelector: "",
+  languageSelector: "/language",
+  initialLoading: "/loading",
+  offerhub: "/offer-hub",
+  simulation: "/simulation",
+  suggested: "/suggested",
+  installment: "/installment-value",
+  dueDate: "/due-date",
+  summary: "/summary",
+  terms: "/terms",
+  loading: "/loading",
+  feedback: "/feedback",
+  success: "/success",
+};
+
 function AppContent() {
-  const { setLocale } = useTranslation();
+  const { setLocale, locale } = useTranslation();
   const routeApplied = useRef(false);
+  const enteredViaDeepLink = useRef(false);
 
   const [currentScreen, setCurrentScreen] = useState<ScreenType>("flowSelector");
   const [direction, setDirection] = useState<"forward" | "backward">("forward");
@@ -82,6 +99,7 @@ function AppContent() {
 
     if (!flow) return;
 
+    enteredViaDeepLink.current = true;
     setActiveFlow(flow);
 
     if (lang) {
@@ -92,6 +110,23 @@ function AppContent() {
       setCurrentScreen("languageSelector");
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Maze / analytics: keep URL in sync with current screen ──
+  useEffect(() => {
+    if (!routeApplied.current) return;
+
+    if (currentScreen === "flowSelector") {
+      window.history.replaceState(null, "", "/");
+      return;
+    }
+    if (currentScreen === "languageSelector") {
+      window.history.replaceState(null, "", `/flow${activeFlow}`);
+      return;
+    }
+    const screenPath = SCREEN_PATHS[currentScreen] ?? "";
+    const url = `/flow${activeFlow}${screenPath}?lang=${locale}`;
+    window.history.replaceState(null, "", url);
+  }, [currentScreen, activeFlow, locale]);
 
   // Auto-navigate após loading inicial
   useEffect(() => {
@@ -231,6 +266,7 @@ function AppContent() {
 
   const handleRestartPrototype = () => {
     window.history.replaceState(null, "", "/");
+    enteredViaDeepLink.current = false;
     setHistory([]);
     setDirection("forward");
     setCurrentScreen("flowSelector");
@@ -312,7 +348,7 @@ function AppContent() {
             >
               <LanguageSelector
                 onSelectLanguage={handleLanguageSelect}
-                onBack={() => {
+                onBack={enteredViaDeepLink.current ? undefined : () => {
                   window.history.replaceState(null, "", "/");
                   setDirection("backward");
                   setCurrentScreen("flowSelector");

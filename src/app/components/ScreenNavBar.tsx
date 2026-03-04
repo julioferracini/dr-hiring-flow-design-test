@@ -29,6 +29,8 @@ interface ScreenNavBarProps {
   title?: string;
   className?: string;
   rightAction?: ReactNode;
+  /** When true the bar is rendered inside a fixed overlay (absolute top-0, glass bg, z-10). */
+  fixed?: boolean;
 }
 
 export function ScreenNavBar({
@@ -37,10 +39,11 @@ export function ScreenNavBar({
   title,
   className = "",
   rightAction,
+  fixed = false,
 }: ScreenNavBarProps) {
-  return (
+  const bar = (
     <div
-      className={`h-[64px] relative shrink-0 w-full ${className}`}
+      className={`h-[64px] relative shrink-0 w-full ${fixed ? "" : className}`}
       data-name="Top Bar"
     >
       {/* ── Botão de ação (esquerda) ── */}
@@ -88,6 +91,16 @@ export function ScreenNavBar({
           {rightAction}
         </div>
       )}
+    </div>
+  );
+
+  if (!fixed) return bar;
+
+  return (
+    <div
+      className={`absolute left-0 right-0 top-0 z-10 bg-[rgba(255,255,255,0.67)] backdrop-blur-md flex flex-col items-center ${className}`}
+    >
+      {bar}
     </div>
   );
 }

@@ -154,7 +154,7 @@ function CalcSummarySheet({
               <h2
                 style={{
                   fontFamily: "'Graphik', sans-serif",
-                  fontWeight: 500,
+                  fontWeight: 600,
                   fontSize: "22px",
                   letterSpacing: "-0.66px",
                   color: "#1f0230",
@@ -371,7 +371,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
       data-name="Content"
     >
       <div
-        className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full overflow-visible"
+        className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full overflow-visible"
         data-name="[Magic] Top Bar"
       >
         <div className="h-[44px] relative shrink-0 w-full" data-name="Status Bar">
@@ -386,8 +386,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
         <div className="overflow-clip rounded-[inherit] size-full">
           <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
             <p
-              className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(26px,7vw,36px)] text-center tracking-[-1.08px] w-full whitespace-pre-wrap"
-              style={{ fontWeight: 500, fontFeatureSettings: "'ss05'" }}
+              className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(24px,7vw,32px)] text-center tracking-[-0.96px] w-full whitespace-pre-wrap"
               style={{ fontWeight: 600, fontFeatureSettings: "'ss05'" }}
             >
               {t("simulation.title")}
@@ -760,7 +759,6 @@ function InputInstallments({
         <p
           className="font-graphik leading-[1.1] not-italic relative shrink-0 text-[#1f0230] text-[clamp(36px,8vw,44px)] text-center tracking-[-1.32px] uppercase"
           style={{ fontWeight: 500, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
-          style={{ fontWeight: 600, fontFeatureSettings: "'ss05', 'lnum', 'tnum'" }}
         >
           <AnimatedNumber value={formattedValue} delay={0.1} fontSize={44} fontWeight={500} />
         </p>
