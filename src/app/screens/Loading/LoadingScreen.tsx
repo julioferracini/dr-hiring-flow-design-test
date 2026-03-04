@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import svgPaths from "../../../imports/svg-osjlv45m9o";
 import { tokens } from "../../constants";
 import { useTranslation } from "../../i18n/context";
 
@@ -63,27 +62,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
   return (
     <div className="bg-white content-stretch flex flex-col items-center justify-end overflow-clip relative size-full">
-      {/* Status Bar */}
-      <motion.div
-        className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] w-full"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex flex-col justify-center text-[15px] text-center text-white tracking-[-0.24px] font-sf-pro">
-          <p className="leading-[20px]">11:08</p>
-        </div>
-        <div className="h-[20px] w-[67.661px]">
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 67.6611 20">
-            <path d={svgPaths.p25c9c700} fill="white" />
-            <path d={svgPaths.p8fa51f0} fill="white" />
-            <rect height="10.3333" opacity="0.35" rx="3.5" stroke="white" width="21" x="43.833" y="4.83333" />
-            <path d={svgPaths.p2deda380} fill="white" opacity="0.4" />
-            <rect fill="white" height="7.33333" rx="2.3" width="18" x="45.333" y="6.33333" />
-          </svg>
-        </div>
-      </motion.div>
-
       {/* Content Area */}
       <div className="flex-1 w-full relative flex items-end justify-center pb-[80px]">
         <div className="flex flex-col gap-[32px] items-center w-full px-[24px]">

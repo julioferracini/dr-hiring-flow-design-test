@@ -17,15 +17,6 @@ interface LanguageSelectorProps {
 export default function LanguageSelector({ onSelectLanguage, onBack }: LanguageSelectorProps) {
   return (
     <div className="absolute inset-0 bg-white flex flex-col">
-      {/* Status Bar */}
-      <div className="h-[44px] bg-[#820AD1] w-full">
-        <div className="flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] size-full">
-          <div className="flex flex-col font-sf-pro font-semibold justify-center leading-[0] text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
-            <p className="leading-[20px]">09:07</p>
-          </div>
-        </div>
-      </div>
-
       {/* Header */}
       <div className="bg-[#820AD1] px-[24px] pt-[16px] pb-[48px]">
         {/* Back button */}
@@ -57,7 +48,7 @@ export default function LanguageSelector({ onSelectLanguage, onBack }: LanguageS
             className="text-white text-[24px] font-bold leading-[1.2] mb-[6px]"
             style={{ fontFamily: tokens.fonts.nuSans, letterSpacing: '-0.72px' }}
           >
-            Hiring (negotiation) Flow
+            Negotiation Flow Prototype (Emulator)
           </h1>
           <p
             className="text-white/80 text-[16px] leading-[1.4]"

@@ -255,15 +255,6 @@ export default function OfferHubScreen({
     <div className="absolute inset-0 bg-white overflow-hidden">
       {/* Header */}
       <div className="absolute bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center left-0 top-0 w-full z-10 right-0">
-        {/* Status Bar */}
-        <div className="h-[44px] relative w-full">
-          <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
-            <div className="flex flex-col font-sf-pro font-semibold justify-center leading-[0] not-italic relative text-[15px] text-center text-white tracking-[-0.24px] whitespace-nowrap">
-              <p className="leading-[20px]">09:07</p>
-            </div>
-          </div>
-        </div>
-
         {/* Top Bar */}
         <div className="h-[64px] relative w-full">
           <ScreenNavBar
@@ -275,7 +266,7 @@ export default function OfferHubScreen({
       </div>
 
       {/* Fixed Segmented Control */}
-      <div className="absolute left-0 right-0 top-[108px] z-20 bg-[rgba(255,255,255,0.67)] backdrop-blur-md px-[24px] pt-[16px] pb-[12px]">
+      <div className="absolute left-0 right-0 top-[64px] z-20 bg-[rgba(255,255,255,0.67)] backdrop-blur-md px-[24px] pt-[16px] pb-[12px]">
         <div className="bg-[#f8f6f8] h-[48px] relative rounded-[64px] w-full">
           <div className="flex flex-row items-center overflow-x-auto overflow-y-clip size-full">
             <div className="content-stretch flex items-center p-[2px] relative size-full">
@@ -346,7 +337,7 @@ export default function OfferHubScreen({
       {/* Scrollable Content */}
       <div
         ref={scrollContainerRef}
-        className="absolute inset-0 overflow-y-auto pt-[184px] pb-[16px]"
+        className="absolute inset-0 overflow-y-auto pt-[140px] pb-[16px]"
       >
         <div className="content-stretch flex flex-col gap-[16px] items-center px-[24px] w-full">
           {/* Main Values with Roulette Animation */}

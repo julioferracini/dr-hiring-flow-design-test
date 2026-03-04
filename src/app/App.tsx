@@ -324,6 +324,7 @@ function AppContent() {
   return (
     <div className="size-full flex items-center justify-center bg-gray-100">
       <div className="w-full h-full md:w-[375px] md:h-[812px] md:rounded-[32px] md:shadow-2xl relative overflow-hidden bg-white">
+        <div className="absolute inset-0 md:pt-[16px]">
         <AnimatePresence initial={false} custom={direction}>
           {currentScreen === "flowSelector" && (
             <motion.div key="flowSelector" className="absolute inset-0 bg-white"
@@ -507,6 +508,7 @@ function AppContent() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </div>
   );

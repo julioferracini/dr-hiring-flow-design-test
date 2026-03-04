@@ -6,20 +6,9 @@ import { ScreenNavBar } from "../../components/ScreenNavBar";
 import BottomActionBar from "../../components/BottomActionBar";
 import AlertBottomSheet from "../../components/AlertBottomSheet";
 import { useTranslation } from "../../i18n/context";
-
 interface InstallmentValueProps {
   onComplete?: (monthlyValue: number, rawMonetaryValue?: number) => void;
   onBack?: () => void;
-}
-
-function StatusBar() {
-  return (
-    <div className="h-[44px] relative shrink-0 w-full" data-name="Status Bar">
-      <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
-        {/* Empty - spacing only */}
-      </div>
-    </div>
-  );
 }
 
 function MagicIcon() {
@@ -68,13 +57,6 @@ function Header({ onBack, compact = false }: { onBack?: () => void; compact?: bo
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="[Magic] Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
         <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
-          <motion.div
-            animate={{ height: compact ? 0 : 44, opacity: compact ? 0 : 1 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className="overflow-hidden w-full"
-          >
-            <StatusBar />
-          </motion.div>
           <TopBar onBack={onBack} />
         </div>
         <motion.div 
