@@ -87,17 +87,17 @@ function Header({ onBack }: { onBack?: () => void }) {
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-        <div className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
+        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
           <StatusBar />
           <TopBar onBack={onBack} />
         </div>
         <div className="relative shrink-0 w-full" data-name="Title">
           <div className="overflow-clip rounded-[inherit] size-full">
             <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[24px] relative w-full">
-              <p className="font-medium leading-[1.1] not-italic relative shrink-0 text-[36px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: tokens.fontWeights.medium, color: colors.text.primary, letterSpacing: '-1.08px' }}>
+              <p className="font-semibold leading-[1.1] not-italic relative shrink-0 text-[32px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: 600, color: colors.text.primary, letterSpacing: '-0.96px' }}>
                 {t('dueDate.heading')}
               </p>
-              <p className="leading-[1.3] relative shrink-0 text-[18px] w-full" style={{ fontFamily: tokens.fonts.nuSans, color: 'rgba(31,2,48,0.62)' }}>
+              <p className="leading-[1.3] relative shrink-0 text-[16px] w-full" style={{ fontFamily: tokens.fonts.nuSans, color: 'rgba(31,2,48,0.62)' }}>
                 {t('dueDate.paymentScheduleInfo')}
               </p>
             </div>

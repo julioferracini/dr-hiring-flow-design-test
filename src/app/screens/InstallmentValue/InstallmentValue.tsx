@@ -62,29 +62,43 @@ function TopBar({ onBack }: { onBack?: () => void }) {
   return <ScreenNavBar variant="back" onAction={onBack} />;
 }
 
-function Header({ onBack }: { onBack?: () => void }) {
+function Header({ onBack, compact = false }: { onBack?: () => void; compact?: boolean }) {
   const { t } = useTranslation();
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="[Magic] Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-        <div className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
-          <StatusBar />
+        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
+          <motion.div
+            animate={{ height: compact ? 0 : 44, opacity: compact ? 0 : 1 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden w-full"
+          >
+            <StatusBar />
+          </motion.div>
           <TopBar onBack={onBack} />
         </div>
         <motion.div 
-          className="relative shrink-0 w-full" 
+          className="relative shrink-0 w-full overflow-hidden" 
           data-name="Title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="overflow-clip rounded-[inherit] size-full">
+          <motion.div
+            className="overflow-clip rounded-[inherit] size-full"
+            animate={{
+              height: compact ? 0 : "auto",
+              opacity: compact ? 0 : 1,
+              marginBottom: compact ? 0 : undefined,
+            }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
-              <p className="font-medium leading-[1.1] not-italic relative shrink-0 text-[36px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: tokens.fontWeights.medium, color: colors.text.primary, letterSpacing: '-1.08px' }}>
+              <p className="font-semibold leading-[1.1] not-italic relative shrink-0 text-[32px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: 600, color: colors.text.primary, letterSpacing: '-0.96px' }}>
                 {t('installmentValue.heading')}
               </p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>
@@ -422,6 +436,17 @@ export default function InstallmentValueScreen({ onComplete, onBack }: Installme
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    const handleViewportResize = () => {
+      if (!window.visualViewport) return;
+      const kbHeight = window.innerHeight - window.visualViewport.height;
+      setKeyboardOpen(kbHeight > 100);
+    };
+    window.visualViewport?.addEventListener("resize", handleViewportResize);
+    return () => window.visualViewport?.removeEventListener("resize", handleViewportResize);
+  }, []);
 
   // ── Label animado do botão ──────────────────────────────────────────────────
   const [displayedValue, setDisplayedValue] = useState(0);
@@ -524,7 +549,7 @@ export default function InstallmentValueScreen({ onComplete, onBack }: Installme
 
   return (
     <div className="bg-white content-stretch flex flex-col items-start overflow-clip relative size-full" data-name="Installment value">
-      <Header onBack={onBack} />
+      <Header onBack={onBack} compact={keyboardOpen} />
       <MoneyInput
         value={inputValue}
         onChange={handleInputChange}

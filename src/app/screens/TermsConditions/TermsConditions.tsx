@@ -26,7 +26,7 @@ function TopBar({ onBack }: { onBack?: () => void }) {
 
 function MagicTopBar({ onBack }: { onBack?: () => void }) {
   return (
-    <div className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
+    <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
       <StatusBar />
       <TopBar onBack={onBack} />
     </div>
@@ -47,7 +47,7 @@ function Header({ onBack }: { onBack?: () => void }) {
       <div className="content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip pb-[24px] pt-[8px] px-[24px] relative shrink-0 w-full whitespace-pre-wrap">
         <p
           className="leading-[1.2] relative shrink-0 text-[28px] tracking-[-0.84px] w-full"
-          style={{ fontFamily: tokens.fonts.graphik, fontWeight: 500, fontFeatureSettings: "'ss05'", color: colors.text.primary }}
+          style={{ fontFamily: tokens.fonts.graphik, fontWeight: 600, fontFeatureSettings: "'ss05'", color: colors.text.primary }}
         >
           {t('terms.heading')}
         </p>
@@ -92,8 +92,8 @@ export default function TermsConditions({ onBack, onConfirm }: TermsConditionsPr
   const { t } = useTranslation();
   return (
     <div className="bg-white content-stretch flex flex-col relative rounded-[40px] size-full overflow-hidden" data-name="Terms & Conditions">
+      <Header onBack={onBack} />
       <div className="flex-1 overflow-y-auto pb-[120px]">
-        <Header onBack={onBack} />
         <TermsContent />
       </div>
       <BottomActionBar

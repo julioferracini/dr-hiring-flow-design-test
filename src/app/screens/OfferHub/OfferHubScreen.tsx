@@ -254,7 +254,7 @@ export default function OfferHubScreen({
   return (
     <div className="absolute inset-0 bg-white overflow-hidden">
       {/* Header */}
-      <div className="absolute bg-[rgba(255,255,255,0.64)] backdrop-blur-md content-stretch flex flex-col items-center left-0 top-0 w-full z-10 right-0">
+      <div className="absolute bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center left-0 top-0 w-full z-10 right-0">
         {/* Status Bar */}
         <div className="h-[44px] relative w-full">
           <div className="content-stretch flex items-start justify-between pb-[10px] pl-[32px] pr-[24px] pt-[18px] relative size-full">
@@ -275,7 +275,7 @@ export default function OfferHubScreen({
       </div>
 
       {/* Fixed Segmented Control */}
-      <div className="absolute left-0 right-0 top-[108px] z-20 bg-[rgba(255,255,255,0.64)] backdrop-blur-md px-[24px] pt-[16px] pb-[12px]">
+      <div className="absolute left-0 right-0 top-[108px] z-20 bg-[rgba(255,255,255,0.67)] backdrop-blur-md px-[24px] pt-[16px] pb-[12px]">
         <div className="bg-[#f8f6f8] h-[48px] relative rounded-[64px] w-full">
           <div className="flex flex-row items-center overflow-x-auto overflow-y-clip size-full">
             <div className="content-stretch flex items-center p-[2px] relative size-full">
