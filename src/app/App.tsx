@@ -19,18 +19,27 @@ const VALID_LOCALES: Record<string, Locale> = {
   "en-us": "en-US", "en": "en-US",
 };
 
-function parseRoute(): { flow: "A" | "B" | null; lang: Locale | null } {
+interface RouteInfo {
+  flow: "A" | "B" | null;
+  useCase: string | null;
+  lang: Locale | null;
+}
+
+function parseRoute(): RouteInfo {
   const path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
   const params = new URLSearchParams(window.location.search);
 
   let flow: "A" | "B" | null = null;
+  let useCase: string | null = null;
+
   if (path === "/flowa" || path === "/flow-a") flow = "A";
   else if (path === "/flowb" || path === "/flow-b") flow = "B";
+  else if (path.startsWith("/usecase/")) useCase = path.replace("/usecase/", "");
 
   const langParam = params.get("lang")?.toLowerCase() ?? "";
   const lang = VALID_LOCALES[langParam] ?? null;
 
-  return { flow, lang };
+  return { flow, useCase, lang };
 }
 
 function AppContent() {
@@ -62,7 +71,15 @@ function AppContent() {
     if (routeApplied.current) return;
     routeApplied.current = true;
 
-    const { flow, lang } = parseRoute();
+    const { flow, useCase, lang } = parseRoute();
+
+    // Use case routes — reserved for future activation
+    // When a use case is activated, add its screen flow here.
+    if (useCase) {
+      // For now, stay on FlowSelector (use cases are "soon")
+      return;
+    }
+
     if (!flow) return;
 
     setActiveFlow(flow);
@@ -88,6 +105,7 @@ function AppContent() {
 
   const handleLanguageSelect = (locale: Locale) => {
     setLocale(locale);
+    window.history.replaceState(null, "", `/flow${activeFlow}?lang=${locale}`);
     setHistory([]);
     setCurrentScreen("initialLoading");
   };
@@ -279,6 +297,7 @@ function AppContent() {
               <FlowSelectorScreen
                 onSelectFlow={(flow) => {
                   setActiveFlow(flow);
+                  window.history.replaceState(null, "", `/flow${flow}`);
                   setDirection("forward");
                   setCurrentScreen("languageSelector");
                 }}

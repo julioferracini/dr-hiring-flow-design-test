@@ -2,10 +2,15 @@
  * Flow Selector Screen
  * Tela inicial do protótipo — escolha entre Flow A e Flow B.
  * Sempre exibida na abertura/refresh.
+ *
+ * "Use Case Tests" dropdown shows future-ready test scenarios
+ * that follow the same URL/language routing architecture.
+ * URL pattern: /usecase/<slug>?lang=<locale>
  */
 
-import { motion } from 'motion/react';
-import { ChevronRight, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronRight, ChevronDown, SlidersHorizontal, Sparkles, CreditCard, Landmark } from 'lucide-react';
 import { tokens } from '../../constants';
 
 interface FlowSelectorProps {
@@ -29,7 +34,31 @@ const FLOWS = [
   },
 ];
 
+const USE_CASES = [
+  {
+    slug: 'credit-card',
+    icon: 'credit-card' as const,
+    label: 'Credit Card',
+    sublabels: ['Cartão de crédito', 'Tarjeta de crédito'],
+    status: 'soon' as const,
+  },
+  {
+    slug: 'lending',
+    icon: 'landmark' as const,
+    label: 'Lending',
+    sublabels: ['Empréstimo', 'Préstamo'],
+    status: 'soon' as const,
+  },
+];
+
+const USE_CASE_ICONS: Record<string, React.ReactNode> = {
+  'credit-card': <CreditCard className="size-[18px]" strokeWidth={2} />,
+  'landmark': <Landmark className="size-[18px]" strokeWidth={2} />,
+};
+
 export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
+  const [useCasesOpen, setUseCasesOpen] = useState(false);
+
   return (
     <div className="absolute inset-0 bg-white flex flex-col">
       {/* Status Bar */}
@@ -53,7 +82,7 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
         >
           <h1
             className="text-white text-[32px] leading-[1.2] mb-[12px]"
-            style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 700 }}
+            style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 800, letterSpacing: '-0.96px' }}
           >
             Debt Resolution
           </h1>
@@ -181,9 +210,94 @@ export default function FlowSelector({ onSelectFlow }: FlowSelectorProps) {
           })}
         </motion.div>
 
+        {/* Use Case Tests — collapsible section */}
+        <motion.div
+          className="mt-[24px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <button
+            className="w-full flex items-center justify-between px-[4px] py-[12px] cursor-pointer"
+            onClick={() => setUseCasesOpen(prev => !prev)}
+          >
+            <span
+              className="text-[#1f0230]/60 text-[13px] font-semibold uppercase tracking-[0.8px]"
+              style={{ fontFamily: tokens.fonts.nuSans }}
+            >
+              Use Case Tests
+            </span>
+            <motion.div
+              animate={{ rotate: useCasesOpen ? 180 : 0 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <ChevronDown className="size-[18px] text-[#1f0230]/40" strokeWidth={2.5} />
+            </motion.div>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {useCasesOpen && (
+              <motion.div
+                className="space-y-[10px] overflow-hidden"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                {USE_CASES.map((uc) => (
+                  <div
+                    key={uc.slug}
+                    className="w-full bg-white rounded-[16px] p-[16px] flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.05)] opacity-55"
+                  >
+                    <div className="flex items-center gap-[14px]">
+                      <div
+                        className="w-[36px] h-[36px] rounded-[10px] flex items-center justify-center"
+                        style={{ backgroundColor: 'rgba(130,10,209,0.06)', color: 'rgba(0,0,0,0.28)' }}
+                      >
+                        {USE_CASE_ICONS[uc.icon]}
+                      </div>
+
+                      <div className="text-left">
+                        <div
+                          className="text-[#1f0230] text-[15px] leading-[1.3]"
+                          style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 600 }}
+                        >
+                          {uc.label}
+                        </div>
+                        <div
+                          className="text-[#1f0230]/40 text-[12px] leading-[1.4] mt-[1px]"
+                          style={{ fontFamily: tokens.fonts.nuSans }}
+                        >
+                          {uc.sublabels.join(' · ')}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-[#F3F2F3] rounded-full px-[10px] py-[4px] shrink-0">
+                      <span
+                        className="text-[#820AD1]/60 text-[11px] font-semibold"
+                        style={{ fontFamily: tokens.fonts.nuSans }}
+                      >
+                        soon
+                      </span>
+                    </div>
+                  </div>
+                ))}
+
+                <p
+                  className="text-[#1f0230]/30 text-[12px] leading-[1.5] text-center pt-[8px] pb-[4px]"
+                  style={{ fontFamily: tokens.fonts.nuSans }}
+                >
+                  /usecase/credit-card?lang=es-MX
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
         {/* Footer note */}
         <motion.div
-          className="mt-[32px] text-center"
+          className="mt-[24px] text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
