@@ -1,4 +1,4 @@
-# Negotiation Flow Prototype
+# Negotiation Flow Prototype (Emulator)
 
 Interactive mobile prototype (375x812) for negotiation flows. Two distinct flows let users explore different interaction models for the same financial product. Everything runs client-side with real amortization math, three languages, and production-grade micro-interactions.
 
