@@ -852,6 +852,31 @@ function useIsSmallScreen(breakpoint = 568) {
   return isSmall;
 }
 
+// Haptic tick: vibration (Android) + audio click (cross-platform)
+const audioCtxRef = { current: null as AudioContext | null };
+function hapticTick() {
+  if (typeof navigator !== "undefined" && navigator.vibrate) {
+    navigator.vibrate(5);
+  }
+  try {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    const ctx = audioCtxRef.current;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 1800;
+    gain.gain.setValueAtTime(0.03, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.015);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.015);
+  } catch {
+    // silent fallback
+  }
+}
+
 function InstallmentsSlider({
   minValue = 2,
   maxValue = 60,
@@ -865,9 +890,20 @@ function InstallmentsSlider({
 }) {
   const { t } = useTranslation();
   const [isDragging, setIsDragging] = useState(false);
+  const [tickPulse, setTickPulse] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [sliderWidth, setSliderWidth] = useState(0);
   const isSmallScreen = useIsSmallScreen();
+  const lastValueRef = useRef(value);
+
+  const emitWithTick = (newValue: number) => {
+    if (newValue !== lastValueRef.current) {
+      lastValueRef.current = newValue;
+      hapticTick();
+      setTickPulse((p) => p + 1);
+    }
+    onChange(newValue);
+  };
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -903,7 +939,7 @@ function InstallmentsSlider({
     e.preventDefault();
     setIsDragging(true);
     const handleMouseMove = (e: MouseEvent) => {
-      onChange(Math.max(minValue, Math.min(maxValue, computeValueFromX(e.clientX))));
+      emitWithTick(Math.max(minValue, Math.min(maxValue, computeValueFromX(e.clientX))));
     };
     const handleMouseUp = () => {
       setIsDragging(false);
@@ -919,7 +955,7 @@ function InstallmentsSlider({
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
       const touch = e.touches[0];
-      onChange(Math.max(minValue, Math.min(maxValue, computeValueFromX(touch.clientX))));
+      emitWithTick(Math.max(minValue, Math.min(maxValue, computeValueFromX(touch.clientX))));
     };
     const handleTouchEnd = () => {
       setIsDragging(false);
@@ -932,7 +968,7 @@ function InstallmentsSlider({
 
   const handleTrackClick = (e: React.MouseEvent) => {
     if (!isDragging) {
-      onChange(Math.max(minValue, Math.min(maxValue, computeValueFromX(e.clientX))));
+      emitWithTick(Math.max(minValue, Math.min(maxValue, computeValueFromX(e.clientX))));
     }
   };
 
@@ -989,7 +1025,24 @@ function InstallmentsSlider({
               zIndex: 2,
             }}
             data-name="Thumb"
-          />
+          >
+            {/* Tick ring — pulses on each month change */}
+            <AnimatePresence>
+              <motion.div
+                key={tickPulse}
+                initial={{ scale: 0.8, opacity: 0.6 }}
+                animate={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "50%",
+                  border: "2px solid rgba(130,10,209,0.3)",
+                  pointerEvents: "none",
+                }}
+              />
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* Labels — Mais desconto | Mais tempo (Figma exact) */}
