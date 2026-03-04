@@ -1,6 +1,6 @@
-# Debt Resolution Prototype
+# Negotiation Flow Prototype
 
-Interactive mobile prototype (375x812) for debt renegotiation flows. Two distinct flows let users explore different interaction models for the same financial product. Everything runs client-side with real amortization math, three languages, and production-grade micro-interactions.
+Interactive mobile prototype (375x812) for negotiation flows. Two distinct flows let users explore different interaction models for the same financial product. Everything runs client-side with real amortization math, three languages, and production-grade micro-interactions.
 
 **Stack:** React 18 · TypeScript · Motion · Tailwind CSS v4 · Vite
 
