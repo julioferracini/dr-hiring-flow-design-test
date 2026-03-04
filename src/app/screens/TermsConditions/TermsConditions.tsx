@@ -33,41 +33,33 @@ function MagicTopBar({ onBack }: { onBack?: () => void }) {
   );
 }
 
-function Header({ onBack }: { onBack?: () => void }) {
-  const { t } = useTranslation();
+function TermsContent() {
+  const { t, translations } = useTranslation();
+  const paragraphs = translations.terms.paragraphs;
+
   return (
-    <motion.div
-      className="bg-white content-stretch flex flex-col items-center relative shrink-0 w-full"
-      data-name="Header"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-    >
-      <MagicTopBar onBack={onBack} />
-      <div className="content-stretch flex flex-col gap-[8px] items-start not-italic overflow-clip pb-[24px] pt-[8px] px-[24px] relative shrink-0 w-full whitespace-pre-wrap">
+    <div className="px-[24px] pb-[140px] w-full">
+      {/* Heading + subtitle — now scrollable */}
+      <motion.div
+        className="flex flex-col gap-[8px] pb-[24px] pt-[8px] w-full whitespace-pre-wrap"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
         <p
-          className="leading-[1.2] relative shrink-0 text-[28px] tracking-[-0.84px] w-full"
+          className="leading-[1.2] text-[28px] tracking-[-0.84px] w-full"
           style={{ fontFamily: tokens.fonts.graphik, fontWeight: 600, fontFeatureSettings: "'ss05'", color: colors.text.primary }}
         >
           {t('terms.heading')}
         </p>
         <p
-          className="leading-[1.3] relative shrink-0 text-[18px] tracking-[-0.18px] w-full"
+          className="leading-[1.3] text-[18px] tracking-[-0.18px] w-full"
           style={{ fontFamily: tokens.fonts.graphik, fontWeight: 400, fontFeatureSettings: "'ss05'", color: colors.text.primary }}
         >
           {t('terms.bodySubtitle')}
         </p>
-      </div>
-    </motion.div>
-  );
-}
+      </motion.div>
 
-function TermsContent() {
-  const { translations } = useTranslation();
-  const paragraphs = translations.terms.paragraphs;
-
-  return (
-    <div className="px-[24px] pb-[140px] w-full">
       <div className="flex flex-col gap-[12px]">
         {paragraphs.map((p, i) => (
           <p
@@ -75,7 +67,7 @@ function TermsContent() {
             className="leading-[1.5] text-[16px] tracking-[-0.16px]"
             style={{
               fontFamily: tokens.fonts.graphik,
-              fontWeight: p.bold ? 500 : 400,
+              fontWeight: p.bold ? 700 : 400,
               fontFeatureSettings: "'ss05'",
               color: colors.text.primary,
             }}
@@ -92,7 +84,7 @@ export default function TermsConditions({ onBack, onConfirm }: TermsConditionsPr
   const { t } = useTranslation();
   return (
     <div className="bg-white content-stretch flex flex-col relative rounded-[40px] size-full overflow-hidden" data-name="Terms & Conditions">
-      <Header onBack={onBack} />
+      <MagicTopBar onBack={onBack} />
       <div className="flex-1 overflow-y-auto pb-[120px]">
         <TermsContent />
       </div>

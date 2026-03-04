@@ -15,6 +15,7 @@
 
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
+import { tokens } from "../constants";
 
 // Paths extraídos dos arquivos SVG do Figma (viewBox 0 0 20 20, fill-based)
 const BACK_PATH =
@@ -75,7 +76,7 @@ export function ScreenNavBar({
           <p
             className="text-[#1f0230] text-[14px] text-center whitespace-nowrap overflow-hidden text-ellipsis"
             style={{
-              fontFamily: "'Nu_Sans_Text', sans-serif",
+              fontFamily: tokens.fonts.nuSans,
               fontWeight: 600,
               lineHeight: "1.3",
             }}

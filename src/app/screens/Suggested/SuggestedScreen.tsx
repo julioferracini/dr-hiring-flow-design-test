@@ -317,7 +317,7 @@ function ValueEditorSheet({
             <div className="flex items-center justify-between px-[20px] pt-[12px] pb-[4px]">
               <h3
                 style={{
-                  fontFamily: "'Graphik', sans-serif",
+                  fontFamily: tokens.fonts.graphik,
                   fontWeight: 500,
                   fontSize: "20px",
                   letterSpacing: "-0.6px",
@@ -349,7 +349,7 @@ function ValueEditorSheet({
               <div className="flex items-baseline gap-[6px]">
                 <span
                   style={{
-                    fontFamily: "'Graphik', sans-serif",
+                    fontFamily: tokens.fonts.graphik,
                     fontWeight: 500,
                     fontSize: "32px",
                     color: "#1f0230",
@@ -365,7 +365,7 @@ function ValueEditorSheet({
                   value={formatDisplay()}
                   autoFocus
                   style={{
-                    fontFamily: "'Graphik', sans-serif",
+                    fontFamily: tokens.fonts.graphik,
                     fontWeight: 500,
                     fontSize: "40px",
                     color: "#1f0230",
@@ -407,7 +407,7 @@ function ValueEditorSheet({
                       >
                         <span
                           style={{
-                            fontFamily: "'Nu_Sans_Text', sans-serif",
+                            fontFamily: tokens.fonts.nuSans,
                             fontWeight: key === "backspace" ? 400 : 600,
                             fontSize: "20px",
                             color: key === "backspace" ? "#820ad1" : "#1f0230",
@@ -434,7 +434,7 @@ function ValueEditorSheet({
               >
                 <span
                   style={{
-                    fontFamily: "'Nu_Sans_Text', sans-serif",
+                    fontFamily: tokens.fonts.nuSans,
                     fontWeight: 600,
                     fontSize: "15px",
                     color: "#fff",
@@ -668,7 +668,7 @@ function CalcSummarySheet({
               <div className="w-[36px] h-[5px] rounded-full" style={{ backgroundColor: "rgba(0,0,0,0.12)" }} />
             </div>
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
-              <h2 style={{ fontFamily: "'Graphik', sans-serif", fontWeight: 600, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
+              <h2 style={{ fontFamily: tokens.fonts.graphik, fontWeight: 600, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
               <motion.button className="size-[36px] flex items-center justify-center rounded-full" style={{ backgroundColor: "rgba(31,2,48,0)" }} onClick={onClose} whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }} whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }} transition={{ duration: 0.12 }} aria-label="Close">
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z" fill="#1F0230" fillOpacity="0.62" /></svg>
               </motion.button>
@@ -678,15 +678,15 @@ function CalcSummarySheet({
                 <div key={i}>
                   {i > 0 && <div className="w-full h-[1px]" style={{ backgroundColor: "rgba(31,2,48,0.07)" }} />}
                   <div className="flex items-center justify-between py-[14px] gap-[12px]">
-                    <span style={{ fontFamily: "'Nu_Sans_Text', sans-serif", fontWeight: row.isSavings ? 500 : 400, fontSize: "14px", color: row.isSavings ? "#1f0230" : "rgba(0,0,0,0.52)", letterSpacing: "-0.14px", flexShrink: 0 }}>{row.label}</span>
-                    <span style={{ fontFamily: "'Nu_Sans_Text', sans-serif", fontWeight: 600, fontSize: "14px", letterSpacing: "-0.14px", color: row.isSavings ? "#2eab57" : row.isNegative ? "#c0392b" : row.highlight ? "#1f0230" : "rgba(0,0,0,0.78)", textAlign: "right", maxWidth: "60%" }}>{row.value}</span>
+                    <span style={{ fontFamily: tokens.fonts.nuSans, fontWeight: row.isSavings ? 500 : 400, fontSize: "14px", color: row.isSavings ? "#1f0230" : "rgba(0,0,0,0.52)", letterSpacing: "-0.14px", flexShrink: 0 }}>{row.label}</span>
+                    <span style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 600, fontSize: "14px", letterSpacing: "-0.14px", color: row.isSavings ? "#2eab57" : row.isNegative ? "#c0392b" : row.highlight ? "#1f0230" : "rgba(0,0,0,0.78)", textAlign: "right", maxWidth: "60%" }}>{row.value}</span>
                   </div>
                 </div>
               ))}
             </div>
             <div className="px-[20px] pb-[28px] pt-[8px]">
               <motion.button className="w-full h-[52px] rounded-[26px] flex items-center justify-center bg-[#820ad1]" style={{ boxShadow: "0px 2px 8px rgba(130,10,209,0.25)" }} onClick={onClose} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                <span style={{ fontFamily: "'Nu_Sans_Text', sans-serif", fontWeight: 600, fontSize: "15px", color: "#fff" }}>{closeLabel}</span>
+                <span style={{ fontFamily: tokens.fonts.nuSans, fontWeight: 600, fontSize: "15px", color: "#fff" }}>{closeLabel}</span>
               </motion.button>
             </div>
           </motion.div>

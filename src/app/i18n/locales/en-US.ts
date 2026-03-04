@@ -229,8 +229,8 @@ export const enUS: Translations = {
   },
   
   pin: {
-    title: 'Enter your PIN',
-    subtitle: 'Confirm to proceed',
+    title: 'Enter your 4-digit PIN',
+    subtitle: '',
     confirm: 'Verify',
   },
   

@@ -72,14 +72,14 @@ export default function OfferBox({
 
                   {/* Title */}
                   <p
-                    className="font-medium leading-[1.2] min-w-full not-italic overflow-hidden relative text-[#1f002f] text-[20px] text-ellipsis tracking-[-0.4px] w-[min-content] whitespace-pre-wrap"
+                    className="font-medium leading-[1.2] min-w-full not-italic overflow-hidden relative text-[#1f002f] text-[20px] text-ellipsis tracking-[-0.6px] w-[min-content] whitespace-pre-wrap"
                     style={{ fontFeatureSettings: "'ss05'", fontFamily: tokens.fonts.graphik }}
                   >
                     {title}
                   </p>
 
                   {/* Payment Info */}
-                  <div className="content-stretch flex gap-[4px] items-start leading-[1.3] not-italic relative text-[12px] text-ellipsis">
+                  <div className="content-stretch flex gap-[4px] items-start leading-[1.3] not-italic relative text-[12px] text-ellipsis tracking-[-0.24px]">
                     <span
                       className="font-normal overflow-hidden relative text-[rgba(0,0,0,0.64)]"
                       style={{ fontFeatureSettings: "'lnum', 'tnum'", fontFamily: tokens.fonts.graphik }}
@@ -97,7 +97,7 @@ export default function OfferBox({
 
                   {/* Benefit Text */}
                   <p
-                    className={`font-medium leading-[1.3] not-italic overflow-hidden relative ${benefitTextColor} text-[12px] text-ellipsis`}
+                    className={`font-medium leading-[1.3] not-italic overflow-hidden relative ${benefitTextColor} text-[12px] text-ellipsis tracking-[-0.24px]`}
                     style={{ fontFeatureSettings: "'lnum', 'tnum'", fontFamily: tokens.fonts.graphik }}
                   >
                     {benefitText}

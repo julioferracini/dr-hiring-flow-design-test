@@ -169,11 +169,11 @@ function MainTitle({ monthlyPayment, savings }: MainTitleProps) {
               <p className="leading-[1.3] whitespace-pre-wrap">{t('summary.yourMonthlyPayment')}</p>
             </div>
             <div className="content-stretch flex flex-col gap-[10px] items-center px-[110px] py-[7px] relative shrink-0 w-[336px]">
-              <div className="flex flex-col font-bold justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-center whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
+              <div className="flex flex-col font-bold justify-center leading-[0] not-italic relative shrink-0 text-[36px] text-center whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary, letterSpacing: '-2px' }}>
                 <p className="leading-[1.1]">{formatCurrency(monthlyPayment)}</p>
               </div>
               <div className="bg-[#ddf5e5] content-stretch flex items-center max-w-[359px] min-h-[20px] overflow-clip px-[4px] py-[2px] relative rounded-[4px] shrink-0">
-                <p className="flex-[1_0_0] font-semibold leading-[1.3] min-h-px min-w-px not-italic overflow-hidden relative text-[12px] text-center text-ellipsis tracking-[0.12px] whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSans, color: '#0c7a3a', fontFeatureSettings: tokens.fontFeatures.numbers }}>
+                <p className="flex-[1_0_0] font-semibold leading-[1.3] min-h-px min-w-px not-italic overflow-hidden relative text-[12px] text-center text-ellipsis tracking-[-0.24px] whitespace-nowrap" style={{ fontFamily: tokens.fonts.nuSans, color: '#0c7a3a', fontFeatureSettings: tokens.fontFeatures.numbers }}>
                   {t('summary.totalDiscount', { amount: formatCurrency(savings) })}
                 </p>
               </div>
@@ -213,7 +213,7 @@ function PaymentPlanBlock({ installments, monthlyPayment, dueDate, downpayment, 
       <div className="relative shrink-0 w-full">
         <div className="flex flex-row items-center size-full">
           <div className="content-stretch flex gap-[8px] items-center pb-[12px] pt-[20px] px-[20px] relative w-full">
-            <div className="flex flex-[1_0_0] flex-col font-medium justify-center leading-[0] min-h-px min-w-px not-italic relative text-[20px]" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
+            <div className="flex flex-[1_0_0] flex-col font-bold justify-center leading-[0] min-h-px min-w-px not-italic relative text-[16px]" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
               <p className="leading-[1.2] whitespace-pre-wrap">{t('summary.sectionPaymentPlan')}</p>
             </div>
             <motion.button
@@ -391,7 +391,7 @@ function BillingDetailsBlock({ total, originalPrice }: BillingDetailsBlockProps)
       <div className="relative shrink-0 w-full">
         <div className="flex flex-row items-center size-full">
           <div className="content-stretch flex gap-[8px] items-center pb-[12px] pl-[20px] pr-[8px] pt-[20px] relative w-full">
-            <div className="flex flex-[1_0_0] flex-col font-medium justify-center leading-[0] min-h-px min-w-px not-italic relative text-[20px]" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
+            <div className="flex flex-[1_0_0] flex-col font-bold justify-center leading-[0] min-h-px min-w-px not-italic relative text-[16px]" style={{ fontFamily: tokens.fonts.nuSansDisplay, color: colors.text.primary }}>
               <p className="leading-[1.2] whitespace-pre-wrap">{t('summary.sectionBillingDetails')}</p>
             </div>
           </div>

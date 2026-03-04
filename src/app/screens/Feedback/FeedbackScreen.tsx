@@ -73,52 +73,30 @@ export default function FeedbackScreen({ onMakePayment, onDoLater, onClose }: Fe
   }, []);
 
   return (
-    <div className="content-stretch flex flex-col items-center justify-end overflow-clip p-[16px] relative size-full">
-      {/* Background with Image and Loop Animation */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none rounded-[40px] overflow-hidden"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ 
-          scale: 1, 
-          opacity: 1,
-          y: [0, -8, 0]
-        }}
-        transition={{ 
-          scale: { duration: 1, ease: "easeOut" },
-          opacity: { duration: 0.8 },
-          y: { 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            delay: 1
-          }
-        }}
-      >
-        <div className="absolute bg-[#bab8ff] inset-0 rounded-[40px]" />
+    <div className="content-stretch flex flex-col items-center justify-end overflow-hidden relative size-full">
+      {/* Background — fills entire screen, no rounded corners */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-[#bab8ff]" />
         <motion.img
           alt=""
-          className="absolute max-w-none object-cover rounded-[40px] size-full"
+          className="absolute inset-0 w-full h-full object-cover"
           src={imgFeedback}
-          style={{ 
-            transformStyle: "preserve-3d",
-            perspective: "1000px"
-          }}
-          animate={{
-            rotateX: [0, 2, 0],
-            rotateY: [0, -2, 0]
-          }}
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={{ opacity: 1, scale: [1.2, 1.23, 1.2] }}
           transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
+            opacity: { duration: 0.8 },
+            scale: {
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
           }}
         />
-      </motion.div>
+      </div>
 
       {/* Floating Bottom Card */}
       <motion.div
-        className="bg-white relative rounded-[24px] shadow-[0px_8px_24px_rgba(0,0,0,0.12)] shrink-0 w-full z-10"
+        className="bg-white/[0.88] backdrop-blur-xl relative rounded-[24px] shadow-[0px_8px_24px_rgba(0,0,0,0.12)] shrink-0 w-[calc(100%-32px)] mb-[16px] z-10"
         initial={{ y: 100, opacity: 0, scale: 0.9 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ 
@@ -151,7 +129,7 @@ export default function FeedbackScreen({ onMakePayment, onDoLater, onClose }: Fe
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <div className="flex flex-col font-medium justify-center leading-[1.2] relative shrink-0 text-[28px] text-[rgba(0,0,0,0.96)] w-full" style={{ fontFamily: tokens.fonts.nuSansDisplay }}>
+            <div className="flex flex-col font-bold justify-center leading-[1.2] relative shrink-0 text-[28px] text-[rgba(0,0,0,0.96)] tracking-[-1px] w-full" style={{ fontFamily: tokens.fonts.nuSansDisplay }}>
               <p className="mb-0">{t('feedback.headline1')}</p>
               <p>{t('feedback.headline2')}</p>
             </div>

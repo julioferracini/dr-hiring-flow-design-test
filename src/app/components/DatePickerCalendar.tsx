@@ -103,6 +103,11 @@ export default function DatePickerCalendar({ selectedDate, onSelectDate, onClose
       days.push(new Date(currentYear, currentMonth, day));
     }
 
+    // Pad the last week with empty slots so every row has 7 cells
+    while (days.length % 7 !== 0) {
+      days.push(null);
+    }
+
     return days;
   };
 
@@ -167,6 +172,7 @@ export default function DatePickerCalendar({ selectedDate, onSelectDate, onClose
         <div className="absolute top-0 left-0 right-0 w-full h-[64px] flex items-center px-[24px] z-10">
           <motion.button
             className="size-[32px] bg-white rounded-full flex items-center justify-center cursor-pointer"
+            onClick={onClose}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
