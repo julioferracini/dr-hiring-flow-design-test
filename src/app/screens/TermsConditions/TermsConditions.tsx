@@ -15,7 +15,7 @@ function TopBar({ onBack }: { onBack?: () => void }) {
 
 function MagicTopBar({ onBack }: { onBack?: () => void }) {
   return (
-    <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
+    <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative md:rounded-tl-[32px] md:rounded-tr-[32px] shrink-0 w-full" data-name="[Magic] Top Bar">
       <TopBar onBack={onBack} />
     </div>
   );
@@ -71,7 +71,7 @@ function TermsContent() {
 export default function TermsConditions({ onBack, onConfirm }: TermsConditionsProps) {
   const { t } = useTranslation();
   return (
-    <div className="bg-white content-stretch flex flex-col relative rounded-[40px] size-full overflow-hidden" data-name="Terms & Conditions">
+    <div className="bg-white content-stretch flex flex-col relative md:rounded-[40px] size-full overflow-hidden" data-name="Terms & Conditions">
       <MagicTopBar onBack={onBack} />
       <div className="flex-1 overflow-y-auto pb-[120px]">
         <TermsContent />

@@ -85,6 +85,7 @@ export const ptBR: Translations = {
     downPaymentRequiredMessage: 'Pra parcelamentos com <strong>20 ou mais parcelas</strong>, é necessária uma entrada mínima de <strong>5% da dívida total</strong>. Você pode aumentar esse valor se quiser.',
     downPaymentMinimum: 'Mínimo {amount} (5%)',
     downPaymentMaximum: 'Máximo {amount} (90%)',
+    downPaymentBelowMinimum: 'Valor abaixo do mínimo de {amount}',
     keepForAllInstallments: 'Manter pra todos os parcelamentos',
     keepForAllInstallmentsSubtitle: 'Valor fixo de 2 a 60 meses',
     sliderMoreDiscount: 'Mais desconto',

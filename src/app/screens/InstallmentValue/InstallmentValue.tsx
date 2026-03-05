@@ -56,7 +56,7 @@ function Header({ onBack, compact = false }: { onBack?: () => void; compact?: bo
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="[Magic] Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
+        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative md:rounded-tl-[32px] md:rounded-tr-[32px] shrink-0 w-full">
           <TopBar onBack={onBack} />
         </div>
         <motion.div 
@@ -69,16 +69,23 @@ function Header({ onBack, compact = false }: { onBack?: () => void; compact?: bo
           <motion.div
             className="overflow-clip rounded-[inherit] size-full"
             animate={{
-              height: compact ? 0 : "auto",
-              opacity: compact ? 0 : 1,
-              marginBottom: compact ? 0 : undefined,
+              paddingBottom: compact ? 8 : 20,
+              paddingTop: compact ? 4 : 12,
             }}
             transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <div className="content-stretch flex flex-col gap-[8px] items-start pb-[20px] pt-[12px] px-[20px] relative w-full">
-              <p className="font-semibold leading-[1.1] not-italic relative shrink-0 text-[32px] w-full whitespace-pre-wrap" style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: 600, color: colors.text.primary, letterSpacing: '-0.96px' }}>
+            <div className="content-stretch flex flex-col gap-[8px] items-start px-[20px] relative w-full">
+              <motion.p
+                className="font-semibold leading-[1.1] not-italic relative shrink-0 w-full whitespace-pre-wrap"
+                animate={{
+                  fontSize: compact ? "20px" : "32px",
+                  letterSpacing: compact ? "-0.6px" : "-0.96px",
+                }}
+                transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ fontFamily: tokens.fonts.graphik, fontFeatureSettings: tokens.fontFeatures.graphik, fontWeight: 600, color: colors.text.primary }}
+              >
                 {t('installmentValue.heading')}
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         </motion.div>
@@ -381,7 +388,7 @@ function LoadingOverlay() {
   const { t } = useTranslation();
   return (
     <motion.div
-      className="absolute inset-0 flex items-center justify-center z-50 rounded-[40px]"
+      className="absolute inset-0 flex items-center justify-center z-50 md:rounded-[40px]"
       style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

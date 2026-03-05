@@ -93,6 +93,7 @@ export interface Translations {
     downPaymentRequiredMessage: string;
     downPaymentMinimum: string;
     downPaymentMaximum: string;
+    downPaymentBelowMinimum: string;
     keepForAllInstallments: string;
     keepForAllInstallmentsSubtitle: string;
     sliderMoreDiscount: string;

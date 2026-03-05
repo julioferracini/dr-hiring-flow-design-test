@@ -14,7 +14,7 @@ export default function AlertBottomSheet({
 }: AlertBottomSheetProps) {
   return (
     <div
-      className="absolute inset-0 z-50 flex items-end justify-center rounded-[40px] overflow-hidden"
+      className="absolute inset-0 z-50 flex items-end justify-center md:rounded-[40px] overflow-hidden"
       onClick={onClose}
     >
       {/* Backdrop */}

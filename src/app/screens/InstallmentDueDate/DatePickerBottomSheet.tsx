@@ -372,7 +372,7 @@ export default function DatePickerBottomSheet({ onClose, onSelectDate, selectedD
   return (
     <>
       <motion.div
-        className="absolute inset-0 bg-black/40 z-40 rounded-[40px]"
+        className="absolute inset-0 bg-black/40 z-40 md:rounded-[40px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -381,7 +381,7 @@ export default function DatePickerBottomSheet({ onClose, onSelectDate, selectedD
       />
       
       <motion.div
-        className="absolute bg-white bottom-0 content-stretch flex flex-col items-center left-1/2 -translate-x-1/2 overflow-clip py-[24px] rounded-[40px] z-50 max-w-[375px] w-full"
+        className="absolute bg-white bottom-0 content-stretch flex flex-col items-center left-1/2 -translate-x-1/2 overflow-clip py-[24px] md:rounded-[40px] rounded-t-[32px] z-50 max-w-[375px] w-full"
         data-name="Bottom Sheet"
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
