@@ -9,7 +9,7 @@ import LanguageSelector from "./screens/LanguageSelector/LanguageSelector";
 import { FlowSelectorScreen } from "./screens/FlowSelector";
 import { colors } from "./constants";
 import { I18nProvider, useTranslation } from "./i18n/context";
-import { ScreenTransition, screenTransitions } from "./transitions";
+import { getTransitionProps } from "./transitions";
 import type { Locale } from "./i18n/types";
 
 type ScreenType = "flowSelector" | "languageSelector" | "initialLoading" | "offerhub" | "installment" | "simulation" | "suggested" | "dueDate" | "summary" | "terms" | "loading" | "feedback" | "success";
@@ -314,7 +314,7 @@ function AppContent() {
         <div className="absolute left-0 right-0 bottom-0 app-safe-top">
         <AnimatePresence initial={false} custom={direction}>
           {currentScreen === "flowSelector" && (
-            <ScreenTransition key="flowSelector" type={screenTransitions.flowSelector} screenKey="flowSelector" direction={direction}>
+            <motion.div {...getTransitionProps("flowSelector", direction)} className="absolute inset-0 bg-white">
               <FlowSelectorScreen
                 onSelectFlow={(flow) => {
                   setActiveFlow(flow);
@@ -323,11 +323,11 @@ function AppContent() {
                   setCurrentScreen("languageSelector");
                 }}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "languageSelector" && (
-            <ScreenTransition key="languageSelector" type={screenTransitions.languageSelector} screenKey="languageSelector" direction={direction}>
+            <motion.div {...getTransitionProps("languageSelector", direction)} className="absolute inset-0 bg-white">
               <LanguageSelector
                 onSelectLanguage={handleLanguageSelect}
                 onBack={enteredViaDeepLink.current ? undefined : () => {
@@ -336,37 +336,37 @@ function AppContent() {
                   setCurrentScreen("flowSelector");
                 }}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "initialLoading" && (
-            <ScreenTransition key="initialLoading" type={screenTransitions.initialLoading} screenKey="initialLoading" direction={direction} className="absolute inset-0 bg-white flex items-center justify-center">
+            <motion.div {...getTransitionProps("initialLoading", direction)} className="absolute inset-0 bg-white flex items-center justify-center">
               <motion.div
                 className="w-8 h-8 rounded-full border-4 border-t-transparent"
                 style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "offerhub" && (
-            <ScreenTransition key="offerhub" type={screenTransitions.offerhub} screenKey="offerhub" direction={direction} className="absolute inset-0">
+            <motion.div {...getTransitionProps("offerhub", direction)} className="absolute inset-0">
               <OfferHubScreen onClose={handleOfferHubClose} onOfferSelect={handleOfferSelect} />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "installment" && (
-            <ScreenTransition key="installment" type={screenTransitions.installment} screenKey="installment" direction={direction}>
+            <motion.div {...getTransitionProps("installment", direction)} className="absolute inset-0 bg-white">
               <InstallmentValueScreen
                 onComplete={handleInstallmentComplete}
                 onBack={navigateBack}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "simulation" && (
-            <ScreenTransition key="simulation" type={screenTransitions.simulation} screenKey="simulation" direction={direction}>
+            <motion.div {...getTransitionProps("simulation", direction)} className="absolute inset-0 bg-white">
               <SimulationScreen
                 initialInstallments={initialInstallments}
                 initialDownpayment={simulationData.downpayment > 0 ? simulationData.downpayment : undefined}
@@ -374,21 +374,21 @@ function AppContent() {
                 onBack={navigateBack}
                 onContinue={handleSimulationContinue}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "suggested" && (
-            <ScreenTransition key="suggested" type={screenTransitions.suggested} screenKey="suggested" direction={direction}>
+            <motion.div {...getTransitionProps("suggested", direction)} className="absolute inset-0 bg-white">
               <SuggestedScreen
                 targetValue={targetMonthlyValue}
                 onBack={navigateBack}
                 onSelect={handleSuggestedSelect}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "dueDate" && (
-            <ScreenTransition key="dueDate" type={screenTransitions.dueDate} screenKey="dueDate" direction={direction}>
+            <motion.div {...getTransitionProps("dueDate", direction)} className="absolute inset-0 bg-white">
               <DueDateScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -399,11 +399,11 @@ function AppContent() {
                 onBack={navigateBack}
                 onContinue={handleDueDateContinue}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "summary" && (
-            <ScreenTransition key="summary" type={screenTransitions.summary} screenKey="summary" direction={direction}>
+            <motion.div {...getTransitionProps("summary", direction)} className="absolute inset-0 bg-white">
               <SummaryScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -417,11 +417,11 @@ function AppContent() {
                 onEdit={handleSummaryEdit}
                 onViewTerms={handleViewTermsFromSummary}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "terms" && (
-            <ScreenTransition key="terms" type={screenTransitions.terms} screenKey="terms" direction={direction}>
+            <motion.div {...getTransitionProps("terms", direction)} className="absolute inset-0 bg-white">
               <TermsConditionsScreen
                 onBack={navigateBack}
                 onConfirm={handleTermsConfirm}
@@ -431,29 +431,29 @@ function AppContent() {
                   <PinScreen onComplete={handlePinComplete} onClose={handlePinClose} />
                 </div>
               )}
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "loading" && (
-            <ScreenTransition key="loading" type={screenTransitions.loading} screenKey="loading" direction={direction}>
+            <motion.div {...getTransitionProps("loading", direction)} className="absolute inset-0 bg-white">
               <LoadingScreen onComplete={handleLoadingComplete} />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "feedback" && (
-            <ScreenTransition key="feedback" type={screenTransitions.feedback} screenKey="feedback" direction={direction}>
+            <motion.div {...getTransitionProps("feedback", direction)} className="absolute inset-0 bg-white">
               <FeedbackScreen
                 onMakePayment={handleRestartPrototype}
                 onDoLater={handleRestartPrototype}
                 onClose={handleRestartPrototype}
               />
-            </ScreenTransition>
+            </motion.div>
           )}
 
           {currentScreen === "success" && (
-            <ScreenTransition key="success" type={screenTransitions.success} screenKey="success" direction={direction}>
+            <motion.div {...getTransitionProps("success", direction)} className="absolute inset-0 bg-white">
               <SuccessScreen />
-            </ScreenTransition>
+            </motion.div>
           )}
         </AnimatePresence>
         </div>
