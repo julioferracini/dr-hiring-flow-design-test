@@ -1,44 +1,31 @@
 /**
- * ScreenTransition — wrapper that applies a transition preset to a screen.
+ * getTransitionProps — returns motion.div props for a given transition preset.
  *
  * Usage:
- *   <ScreenTransition type="slide" screenKey="simulation" direction={direction}>
+ *   <motion.div {...screenProps("simulation", direction)} className="absolute inset-0 bg-white">
  *     <SimulationScreen />
- *   </ScreenTransition>
+ *   </motion.div>
  */
 
-import { motion } from "motion/react";
 import { transitionPresets, type TransitionType, type Direction } from "./presets";
+import { screenTransitions } from "./screenConfig";
 
-interface ScreenTransitionProps {
-  type: TransitionType;
-  screenKey: string;
-  direction?: Direction;
-  className?: string;
-  children: React.ReactNode;
-}
-
-export function ScreenTransition({
-  type,
-  screenKey,
-  direction = "forward",
-  className = "absolute inset-0 bg-white",
-  children,
-}: ScreenTransitionProps) {
+export function getTransitionProps(
+  screen: keyof typeof screenTransitions,
+  direction: Direction = "forward",
+) {
+  const type = screenTransitions[screen];
   const preset = transitionPresets[type];
 
-  return (
-    <motion.div
-      key={screenKey}
-      custom={preset.usesDirection ? direction : undefined}
-      variants={preset.variants}
-      initial="enter"
-      animate="center"
-      exit="exit"
-      transition={preset.transition}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return {
+    key: screen,
+    custom: preset.usesDirection ? direction : undefined,
+    variants: preset.variants,
+    initial: "enter" as const,
+    animate: "center" as const,
+    exit: "exit" as const,
+    transition: preset.transition,
+  };
 }
+
+export type { TransitionType, Direction };
