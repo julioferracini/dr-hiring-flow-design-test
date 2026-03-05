@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { colors, tokens } from "../constants";
+import { CloseButton } from "./primitives";
 import svgPaths from "../../imports/svg-l6ni0stbu4";
 import { useTranslation } from "../i18n/context";
 
@@ -8,14 +9,6 @@ interface DatePickerCalendarProps {
   selectedDate: Date | null;
   onSelectDate: (date: Date) => void;
   onClose: () => void;
-}
-
-function CloseIcon() {
-  return (
-    <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24.0024 24.0024">
-      <path d={svgPaths.p5753700} fill="black" fillOpacity="0.64" />
-    </svg>
-  );
 }
 
 function ChevronIcon() {
@@ -170,16 +163,7 @@ export default function DatePickerCalendar({ selectedDate, onSelectDate, onClose
       >
         {/* Navbar with Close Button */}
         <div className="absolute top-0 left-0 right-0 w-full h-[64px] flex items-center px-[24px] z-10">
-          <motion.button
-            className="size-[32px] bg-white rounded-full flex items-center justify-center cursor-pointer"
-            onClick={onClose}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <div className="size-[24px]">
-              <CloseIcon />
-            </div>
-          </motion.button>
+          <CloseButton onClick={onClose} size={32} />
         </div>
 
         {/* Title */}

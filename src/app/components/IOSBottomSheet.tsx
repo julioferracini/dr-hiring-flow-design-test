@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import { motion, AnimatePresence, PanInfo } from "motion/react";
+import { BottomSheetHandle } from "./primitives";
 
 interface IOSBottomSheetProps {
   isOpen: boolean;
@@ -109,9 +110,7 @@ export default function IOSBottomSheet({
               
               {/* Handle Bar */}
               {showHandle && (
-                <div className="flex justify-center pt-[10px] pb-[6px] cursor-grab active:cursor-grabbing">
-                  <div className="w-[36px] h-[5px] bg-black/20 rounded-full" />
-                </div>
+                <BottomSheetHandle className="pb-[6px] cursor-grab active:cursor-grabbing" />
               )}
 
               {/* Content */}

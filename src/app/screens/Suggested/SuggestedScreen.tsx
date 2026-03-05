@@ -11,6 +11,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useAnimationControls } from "motion/react";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
+import { BottomSheetHandle, CloseButton } from "../../components/primitives";
 import { useTranslation } from "../../i18n/context";
 import { useFinancialCalculator } from "../../hooks/useFinancialCalculator";
 import { CURRENCY_CONFIGS } from "../../constants/currencies";
@@ -306,12 +307,7 @@ function ValueEditorSheet({
             style={{ boxShadow: "0px -4px 24px rgba(0,0,0,0.10)" }}
           >
             {/* Handle */}
-            <div className="flex justify-center pt-[10px] pb-[2px]">
-              <div
-                className="w-[36px] h-[5px] rounded-full"
-                style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
-              />
-            </div>
+            <BottomSheetHandle />
 
             {/* Title */}
             <div className="flex items-center justify-between px-[20px] pt-[12px] pb-[4px]">
@@ -327,21 +323,7 @@ function ValueEditorSheet({
               >
                 {title}
               </h3>
-              <motion.button
-                className="size-[36px] flex items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(31,2,48,0)" }}
-                onClick={onClose}
-                whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }}
-                whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z"
-                    fill="#1F0230"
-                    fillOpacity="0.5"
-                  />
-                </svg>
-              </motion.button>
+              <CloseButton onClick={onClose} />
             </div>
 
             {/* Display value */}
@@ -499,9 +481,7 @@ function AllOptionsSheet({
             }}
           >
             {/* Handle */}
-            <div className="flex justify-center pt-[10px] pb-[6px]">
-              <div className="w-[36px] h-[5px] bg-black/20 rounded-full" />
-            </div>
+            <BottomSheetHandle className="pb-[6px]" />
 
             {/* Header with close button */}
             <div className="px-[24px] pt-[8px] pb-[24px]">
@@ -664,14 +644,10 @@ function CalcSummarySheet({
             onClick={(e) => e.stopPropagation()}
             style={{ boxShadow: "0px -4px 32px rgba(0,0,0,0.10)" }}
           >
-            <div className="flex justify-center pt-[10px] pb-[4px]">
-              <div className="w-[36px] h-[5px] rounded-full" style={{ backgroundColor: "rgba(0,0,0,0.12)" }} />
-            </div>
+            <BottomSheetHandle className="pb-[4px]" />
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
               <h2 style={{ fontFamily: tokens.fonts.graphik, fontWeight: 600, fontSize: "22px", letterSpacing: "-0.66px", color: "#1f0230", fontFeatureSettings: "'ss05'" }}>{title}</h2>
-              <motion.button className="size-[36px] flex items-center justify-center rounded-full" style={{ backgroundColor: "rgba(31,2,48,0)" }} onClick={onClose} whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }} whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }} transition={{ duration: 0.12 }} aria-label="Close">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z" fill="#1F0230" fillOpacity="0.62" /></svg>
-              </motion.button>
+              <CloseButton onClick={onClose} />
             </div>
             <div className="px-[20px] pb-[12px] max-h-[55vh] overflow-y-auto">
               {rows.map((row, i) => (

@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useAnimation } from "motion/react";
 import { useTranslation } from "../../i18n/context";
-import { tokens } from "../../constants";
+import { tokens, colors } from "../../constants";
 import { CURRENCY_CONFIGS } from "../../constants/currencies";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
+import { Divider, BottomSheetHandle, CloseButton } from "../../components/primitives";
 import { useFinancialCalculator } from "../../hooks/useFinancialCalculator";
 
 // ============================================================================
@@ -142,12 +143,7 @@ function CalcSummarySheet({
             style={{ boxShadow: "0px -4px 32px rgba(0,0,0,0.10)" }}
           >
             {/* Handle */}
-            <div className="flex justify-center pt-[10px] pb-[4px]">
-              <div
-                className="w-[36px] h-[5px] rounded-full"
-                style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
-              />
-            </div>
+            <BottomSheetHandle />
 
             {/* Title row */}
             <div className="flex items-center justify-between px-[20px] pt-[24px] pb-[16px]">
@@ -165,23 +161,7 @@ function CalcSummarySheet({
               </h2>
 
               {/* Close */}
-              <motion.button
-                className="size-[36px] flex items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(31,2,48,0)" }}
-                onClick={onClose}
-                whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }}
-                whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }}
-                transition={{ duration: 0.12 }}
-                aria-label="Fechar"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z"
-                    fill="#1F0230"
-                    fillOpacity="0.62"
-                  />
-                </svg>
-              </motion.button>
+              <CloseButton onClick={onClose} />
             </div>
 
             {/* Table */}
@@ -189,10 +169,7 @@ function CalcSummarySheet({
               {rows.map((row, i) => (
                 <div key={i}>
                   {i > 0 && (
-                    <div
-                      className="w-full h-[1px]"
-                      style={{ backgroundColor: "rgba(31,2,48,0.07)" }}
-                    />
+                    <Divider height={1} color={colors.border.light} />
                   )}
                   <div className="flex items-center justify-between py-[14px] gap-[12px]">
                     <span
@@ -1165,12 +1142,7 @@ function DownpaymentAlertSheet({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         style={{ boxShadow: "0px -4px 24px rgba(0, 0, 0, 0.12)" }}
       >
-        <div className="flex justify-center pt-3 pb-2">
-          <div
-            className="w-[36px] h-[5px] rounded-full"
-            style={{ backgroundColor: "rgba(0,0,0,0.15)" }}
-          />
-        </div>
+        <BottomSheetHandle />
 
         <div className="px-6 pb-8 pt-4">
           <div className="flex justify-center mb-5">
@@ -1405,12 +1377,7 @@ function BottomSheetEditor({
             style={{ boxShadow: "0px -4px 24px rgba(0,0,0,0.10)" }}
           >
             {/* Handle */}
-            <div className="flex justify-center pt-[10px] pb-[2px]">
-              <div
-                className="w-[36px] h-[5px] rounded-full"
-                style={{ backgroundColor: "rgba(0,0,0,0.12)" }}
-              />
-            </div>
+            <BottomSheetHandle />
 
             {/* Title */}
             <div className="flex items-center justify-between px-[20px] pt-[12px] pb-[4px]">
@@ -1426,21 +1393,7 @@ function BottomSheetEditor({
               >
                 {title}
               </h3>
-              <motion.button
-                className="size-[36px] flex items-center justify-center rounded-full"
-                style={{ backgroundColor: "rgba(31,2,48,0)" }}
-                onClick={onClose}
-                whileHover={{ backgroundColor: "rgba(31,2,48,0.06)" }}
-                whileTap={{ scale: 0.9, backgroundColor: "rgba(31,2,48,0.14)" }}
-              >
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 11.1785L15.2441 16.4226L16.4226 15.2441L11.1785 10L16.4226 4.75592L15.2441 3.57741L10 8.82149L4.75592 3.57741L3.57741 4.75592L8.82149 10L3.57741 15.2441L4.75592 16.4226L10 11.1785Z"
-                    fill="#1F0230"
-                    fillOpacity="0.5"
-                  />
-                </svg>
-              </motion.button>
+              <CloseButton onClick={onClose} />
             </div>
 
             {/* Display value */}
@@ -1611,7 +1564,7 @@ function BottomSheetEditor({
             </div>
 
             {/* Divider */}
-            <div className="h-[1px] mx-[20px]" style={{ backgroundColor: "rgba(31,2,48,0.07)" }} />
+            <Divider height={1} color={colors.border.light} className="mx-[20px]" />
 
             {/* Keypad */}
             <div className="px-[16px] pt-[8px] pb-[8px]">

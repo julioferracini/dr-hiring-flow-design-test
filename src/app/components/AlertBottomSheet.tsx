@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { colors, tokens } from "../constants";
+import { BottomSheetHandle } from "./primitives";
 
 interface AlertBottomSheetProps {
   /** Callback ao fechar/confirmar o alerta */
@@ -36,12 +37,7 @@ export default function AlertBottomSheet({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Handle */}
-        <div className="flex justify-center pt-[12px] pb-[8px]">
-          <div
-            className="h-[5px] rounded-full"
-            style={{ width: 36, backgroundColor: "rgba(0,0,0,0.18)" }}
-          />
-        </div>
+        <BottomSheetHandle className="pt-[12px] pb-[8px]" />
 
         {/* Content */}
         <div className="px-[24px] pt-[8px] pb-[36px] flex flex-col items-center gap-[16px]">
