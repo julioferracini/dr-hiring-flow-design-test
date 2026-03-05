@@ -72,7 +72,7 @@ function TopBar({ onBack }: { onBack?: () => void }) {
 function Header({ onBack }: { onBack?: () => void }) {
   return (
     <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
-      <div className="content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
+      <div className="content-stretch flex flex-col items-center relative md:rounded-tl-[32px] md:rounded-tr-[32px] shrink-0 w-full">
         <TopBar onBack={onBack} />
       </div>
     </div>
@@ -82,7 +82,7 @@ function Header({ onBack }: { onBack?: () => void }) {
 function LoadingOverlay() {
   return (
     <motion.div
-      className="absolute inset-0 z-50 flex items-center justify-center bg-white rounded-[40px]"
+      className="absolute inset-0 z-50 flex items-center justify-center bg-white md:rounded-[40px]"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}

@@ -318,7 +318,7 @@ function Header({ onBack, onInfo }: { onBack?: () => void; onInfo?: () => void }
       data-name="Content"
     >
       <div
-        className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full overflow-visible"
+        className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative md:rounded-tl-[32px] md:rounded-tr-[32px] shrink-0 w-full overflow-visible"
         data-name="[Magic] Top Bar"
       >
         <TopBar onBack={onBack} onInfo={onInfo} />
@@ -794,24 +794,47 @@ function useIsSmallScreen(breakpoint = 568) {
 
 // Haptic tick: vibration (Android) + audio click (cross-platform)
 const audioCtxRef = { current: null as AudioContext | null };
-function hapticTick() {
-  if (typeof navigator !== "undefined" && navigator.vibrate) {
-    navigator.vibrate(5);
-  }
+
+function ensureAudioCtx(): AudioContext | null {
   try {
     if (!audioCtxRef.current) {
       audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
     }
-    const ctx = audioCtxRef.current;
+    if (audioCtxRef.current.state === "suspended") {
+      audioCtxRef.current.resume();
+    }
+    return audioCtxRef.current;
+  } catch {
+    return null;
+  }
+}
+
+function warmUpAudio() {
+  const ctx = ensureAudioCtx();
+  if (!ctx) return;
+  const buf = ctx.createBuffer(1, 1, ctx.sampleRate);
+  const src = ctx.createBufferSource();
+  src.buffer = buf;
+  src.connect(ctx.destination);
+  src.start(0);
+}
+
+function hapticTick() {
+  if (typeof navigator !== "undefined" && navigator.vibrate) {
+    navigator.vibrate(18);
+  }
+  try {
+    const ctx = ensureAudioCtx();
+    if (!ctx) return;
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.frequency.value = 1800;
-    gain.gain.setValueAtTime(0.03, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.015);
+    gain.gain.setValueAtTime(0.06, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
     osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.015);
+    osc.stop(ctx.currentTime + 0.025);
   } catch {
     // silent fallback
   }
@@ -877,6 +900,7 @@ function InstallmentsSlider({
 
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
+    warmUpAudio();
     setIsDragging(true);
     const handleMouseMove = (e: MouseEvent) => {
       emitWithTick(Math.max(minValue, Math.min(maxValue, computeValueFromX(e.clientX))));
@@ -891,6 +915,7 @@ function InstallmentsSlider({
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    warmUpAudio();
     setIsDragging(true);
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
@@ -1043,7 +1068,7 @@ function CheckoutBottomBar({
       data-name="Bottom Bar"
     >
       {/* Side-by-side: texto (esq) + botão Continuar (dir) — fiel ao Figma */}
-      <div className="flex gap-[24px] items-center p-[20px]">
+      <div className="flex gap-[24px] items-center p-[20px]" style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 20px)' }}>
         {/* Left: "Total: R$ X,XXX.XX" + riscado */}
         <div
           className="flex flex-col gap-[4px] flex-1 min-w-0 overflow-hidden"
@@ -1311,7 +1336,12 @@ function BottomSheetEditor({
     });
   };
 
+  const isBelowMin = minValue !== undefined && numericValue < minValue && numericValue > 0;
+  const isAboveMax = maxValue !== undefined && numericValue > maxValue;
+  const isOutOfRange = isBelowMin || isAboveMax;
+
   const handleConfirm = () => {
+    if (isOutOfRange) return;
     let final: number;
     if (type === "installments") {
       final = parseInt(inputValue, 10) || 0;
@@ -1415,16 +1445,22 @@ function BottomSheetEditor({
 
             {/* Display value */}
             <div className="flex flex-col items-center py-[16px] px-[20px]">
-              <div className="flex items-baseline gap-[6px]">
+              <motion.div
+                className="flex items-baseline gap-[6px]"
+                animate={{ x: isOutOfRange ? [0, -6, 6, -4, 4, 0] : 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                key={isOutOfRange ? "shake" : "still"}
+              >
                 {type !== "installments" && (
                   <span
                     style={{
                       fontFamily: tokens.fonts.graphik,
                       fontWeight: 500,
                       fontSize: "32px",
-                      color: "#1f0230",
+                      color: isOutOfRange ? "#d4183d" : "#1f0230",
                       letterSpacing: "-0.96px",
                       fontFeatureSettings: "'ss05'",
+                      transition: "color 0.2s ease",
                     }}
                   >
                     {symbol}
@@ -1439,7 +1475,7 @@ function BottomSheetEditor({
                     fontFamily: tokens.fonts.graphik,
                     fontWeight: 500,
                     fontSize: "40px",
-                    color: "#1f0230",
+                    color: isOutOfRange ? "#d4183d" : "#1f0230",
                     letterSpacing: "-1.2px",
                     fontFeatureSettings: "'ss05', 'tnum'",
                     minWidth: "120px",
@@ -1449,6 +1485,7 @@ function BottomSheetEditor({
                     outline: "none",
                     caretColor: "#820ad1",
                     width: `${Math.max(120, formatDisplay().length * 24)}px`,
+                    transition: "color 0.2s ease",
                   }}
                 />
                 {type === "installments" && (
@@ -1463,25 +1500,50 @@ function BottomSheetEditor({
                     x
                   </span>
                 )}
-              </div>
+              </motion.div>
 
-              {/* Min/Max hint */}
-              {(minValue !== undefined || maxValue !== undefined) && (
-                <p
-                  style={{
-                    fontFamily: tokens.fonts.nuSans,
-                    fontWeight: 400,
-                    fontSize: "12px",
-                    color: "rgba(0,0,0,0.4)",
-                    marginTop: "4px",
-                  }}
-                >
-                  {minValue !== undefined && t("simulation.downPaymentMinimum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${minValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
-                  {minValue !== undefined && maxValue !== undefined && " · "}
-                  {maxValue !== undefined && t("simulation.downPaymentMaximum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${maxValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
-
-                </p>
-              )}
+              {/* Error / Min-Max hint */}
+              <AnimatePresence mode="wait">
+                {isOutOfRange ? (
+                  <motion.p
+                    key="error"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      fontFamily: tokens.fonts.nuSans,
+                      fontWeight: 500,
+                      fontSize: "13px",
+                      color: "#d4183d",
+                      marginTop: "6px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {isBelowMin && minValue !== undefined && t("simulation.downPaymentBelowMinimum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${minValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
+                    {isAboveMax && maxValue !== undefined && t("simulation.downPaymentMaximum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${maxValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
+                  </motion.p>
+                ) : (minValue !== undefined || maxValue !== undefined) ? (
+                  <motion.p
+                    key="hint"
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      fontFamily: tokens.fonts.nuSans,
+                      fontWeight: 400,
+                      fontSize: "12px",
+                      color: "rgba(0,0,0,0.4)",
+                      marginTop: "4px",
+                    }}
+                  >
+                    {minValue !== undefined && t("simulation.downPaymentMinimum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${minValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
+                    {minValue !== undefined && maxValue !== undefined && " · "}
+                    {maxValue !== undefined && t("simulation.downPaymentMaximum").replace("{amount}", `${symbol}${config.spaceAfterSymbol ? " " : ""}${maxValue.toFixed(2).replace(".", config.decimalSeparator)}`)}
+                  </motion.p>
+                ) : null}
+              </AnimatePresence>
 
               {/* Lock toggle for downpayment */}
               {type === "downpayment" && (
@@ -1589,20 +1651,26 @@ function BottomSheetEditor({
             </div>
 
             {/* Confirm */}
-            <div className="px-[20px] pb-[28px] pt-[8px]">
+            <div className="px-[20px] pt-[8px]" style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 28px)' }}>
               <motion.button
-                className="w-full h-[52px] rounded-[26px] flex items-center justify-center bg-[#820ad1]"
-                style={{ boxShadow: "0px 2px 8px rgba(130,10,209,0.25)" }}
+                className="w-full h-[52px] rounded-[26px] flex items-center justify-center"
+                style={{
+                  backgroundColor: isOutOfRange ? "#c7c7cc" : "#820ad1",
+                  boxShadow: isOutOfRange ? "none" : "0px 2px 8px rgba(130,10,209,0.25)",
+                  cursor: isOutOfRange ? "not-allowed" : "pointer",
+                  transition: "background-color 0.2s ease, box-shadow 0.2s ease",
+                }}
                 onClick={handleConfirm}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={isOutOfRange ? {} : { scale: 1.02 }}
+                whileTap={isOutOfRange ? {} : { scale: 0.97 }}
               >
                 <span
                   style={{
                     fontFamily: tokens.fonts.nuSans,
                     fontWeight: 600,
                     fontSize: "15px",
-                    color: "#fff",
+                    color: isOutOfRange ? "rgba(255,255,255,0.72)" : "#fff",
+                    transition: "color 0.2s ease",
                   }}
                 >
                   {t("simulation.confirm")}
@@ -1796,7 +1864,7 @@ export function Simulation({
 
   return (
     <div
-      className="bg-white content-stretch flex flex-col items-start overflow-clip relative rounded-[40px] size-full min-w-[320px] max-w-[767px] mx-auto"
+      className="bg-white content-stretch flex flex-col items-start overflow-clip relative md:rounded-[40px] size-full min-w-[320px] max-w-[767px] mx-auto"
       data-name="Simulation Template"
     >
       {/* Header */}

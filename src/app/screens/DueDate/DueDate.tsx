@@ -47,7 +47,7 @@ function Header({ onBack }: { onBack?: () => void }) {
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Header">
       <div className="content-stretch flex flex-col items-center relative shrink-0 w-full">
-        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative rounded-tl-[32px] rounded-tr-[32px] shrink-0 w-full">
+        <div className="bg-[rgba(255,255,255,0.67)] backdrop-blur-md content-stretch flex flex-col items-center relative md:rounded-tl-[32px] md:rounded-tr-[32px] shrink-0 w-full">
           <TopBar onBack={onBack} />
         </div>
         <div className="relative shrink-0 w-full" data-name="Title">

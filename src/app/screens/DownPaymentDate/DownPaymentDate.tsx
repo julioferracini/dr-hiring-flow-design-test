@@ -7,7 +7,7 @@ import { colors, tokens } from "../../constants";
 export default function DownPaymentDateScreen() {
   return (
     <div 
-      className="content-stretch flex flex-col items-center justify-center overflow-clip relative rounded-[40px] size-full p-6" 
+      className="content-stretch flex flex-col items-center justify-center overflow-clip relative md:rounded-[40px] size-full p-6" 
       style={{ backgroundColor: colors.neutral.white }}
       data-name="DownPaymentDate"
     >

@@ -62,7 +62,7 @@ function useIsMobileViewport() {
 
 // ─── Home Indicator ───────────────────────────────────────────────────────────
 function HomeIndicatorSpace() {
-  return <div className="w-full pt-[4px] pb-[8px] shrink-0" />;
+  return <div className="w-full shrink-0" style={{ paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 12px)' }} />;
 }
 
 // ─── Props ────────────────────────────────────────────────────────────────────

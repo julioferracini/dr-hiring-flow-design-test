@@ -72,7 +72,7 @@ export default function IOSBottomSheet({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="absolute inset-0 z-50 flex items-end justify-center rounded-[40px] overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 z-50 flex items-end justify-center md:rounded-[40px] overflow-hidden pointer-events-none">
           {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-black/40 pointer-events-auto"

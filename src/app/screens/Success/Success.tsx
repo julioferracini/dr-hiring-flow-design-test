@@ -5,7 +5,7 @@ import { useTranslation } from "../../i18n/context";
 export default function SuccessScreen() {
   const { t } = useTranslation();
   return (
-    <div className="bg-white content-stretch flex flex-col items-center justify-center overflow-clip relative rounded-[40px] size-full">
+    <div className="bg-white content-stretch flex flex-col items-center justify-center overflow-clip relative md:rounded-[40px] size-full">
       <motion.div
         className="flex flex-col items-center gap-8"
         initial={{ opacity: 0, scale: 0.8 }}

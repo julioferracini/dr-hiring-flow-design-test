@@ -87,6 +87,7 @@ export const esMX: Translations = {
     downPaymentRequiredMessage: 'Para planes de <strong>20 mensualidades o más</strong>, se requiere un enganche mínimo del <strong>5% de la deuda total</strong>. Puedes aumentarlo si quieres.',
     downPaymentMinimum: 'Mínimo {amount} (5%)',
     downPaymentMaximum: 'Máximo {amount} (90%)',
+    downPaymentBelowMinimum: 'Valor por debajo del mínimo de {amount}',
     keepForAllInstallments: 'Mantener para todas las mensualidades',
     keepForAllInstallmentsSubtitle: 'Monto fijo de 2 a 60 meses',
     sliderMoreDiscount: 'Más descuento',

@@ -78,6 +78,7 @@ export const enUS: Translations = {
     downPaymentRequiredMessage: 'For payment plans with <strong>20 or more installments</strong>, a minimum down payment of <strong>5% of the total debt</strong> is required. You can increase this amount if you wish.',
     downPaymentMinimum: 'Minimum {amount} (5%)',
     downPaymentMaximum: 'Maximum {amount} (90%)',
+    downPaymentBelowMinimum: 'Value below the minimum of {amount}',
     keepForAllInstallments: 'Keep for all installments',
     keepForAllInstallmentsSubtitle: 'Fixed value from 2 to 60 months',
     sliderMoreDiscount: 'More discount',

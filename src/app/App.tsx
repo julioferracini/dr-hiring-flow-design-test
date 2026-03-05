@@ -321,10 +321,16 @@ function AppContent() {
     mass: 0.9
   };
 
+  const safeAreaBg = (currentScreen === "flowSelector" || currentScreen === "languageSelector") ? "#820AD1" : "#ffffff";
+
   return (
     <div className="size-full flex items-center justify-center bg-gray-100">
       <div className="w-full h-full md:w-[375px] md:h-[812px] md:rounded-[32px] md:shadow-2xl relative overflow-hidden bg-white">
-        <div className="absolute inset-0 md:pt-[16px]">
+        <div
+          className="absolute top-0 left-0 right-0 app-safe-fill transition-colors duration-300"
+          style={{ backgroundColor: safeAreaBg }}
+        />
+        <div className="absolute left-0 right-0 bottom-0 app-safe-top">
         <AnimatePresence initial={false} custom={direction}>
           {currentScreen === "flowSelector" && (
             <motion.div key="flowSelector" className="absolute inset-0 bg-white"
