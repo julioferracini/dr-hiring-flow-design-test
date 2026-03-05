@@ -29,7 +29,6 @@ export function ScreenTransition({
 
   return (
     <motion.div
-      key={screenKey}
       custom={preset.usesDirection ? direction : undefined}
       variants={preset.variants}
       initial="enter"

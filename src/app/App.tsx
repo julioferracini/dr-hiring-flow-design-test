@@ -314,7 +314,7 @@ function AppContent() {
         <div className="absolute left-0 right-0 bottom-0 app-safe-top">
         <AnimatePresence initial={false} custom={direction}>
           {currentScreen === "flowSelector" && (
-            <ScreenTransition type={screenTransitions.flowSelector} screenKey="flowSelector" direction={direction}>
+            <ScreenTransition key="flowSelector" type={screenTransitions.flowSelector} screenKey="flowSelector" direction={direction}>
               <FlowSelectorScreen
                 onSelectFlow={(flow) => {
                   setActiveFlow(flow);
@@ -327,7 +327,7 @@ function AppContent() {
           )}
 
           {currentScreen === "languageSelector" && (
-            <ScreenTransition type={screenTransitions.languageSelector} screenKey="languageSelector" direction={direction}>
+            <ScreenTransition key="languageSelector" type={screenTransitions.languageSelector} screenKey="languageSelector" direction={direction}>
               <LanguageSelector
                 onSelectLanguage={handleLanguageSelect}
                 onBack={enteredViaDeepLink.current ? undefined : () => {
@@ -340,7 +340,7 @@ function AppContent() {
           )}
 
           {currentScreen === "initialLoading" && (
-            <ScreenTransition type={screenTransitions.initialLoading} screenKey="initialLoading" direction={direction} className="absolute inset-0 bg-white flex items-center justify-center">
+            <ScreenTransition key="initialLoading" type={screenTransitions.initialLoading} screenKey="initialLoading" direction={direction} className="absolute inset-0 bg-white flex items-center justify-center">
               <motion.div
                 className="w-8 h-8 rounded-full border-4 border-t-transparent"
                 style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
@@ -351,13 +351,13 @@ function AppContent() {
           )}
 
           {currentScreen === "offerhub" && (
-            <ScreenTransition type={screenTransitions.offerhub} screenKey="offerhub" direction={direction} className="absolute inset-0">
+            <ScreenTransition key="offerhub" type={screenTransitions.offerhub} screenKey="offerhub" direction={direction} className="absolute inset-0">
               <OfferHubScreen onClose={handleOfferHubClose} onOfferSelect={handleOfferSelect} />
             </ScreenTransition>
           )}
 
           {currentScreen === "installment" && (
-            <ScreenTransition type={screenTransitions.installment} screenKey="installment" direction={direction}>
+            <ScreenTransition key="installment" type={screenTransitions.installment} screenKey="installment" direction={direction}>
               <InstallmentValueScreen
                 onComplete={handleInstallmentComplete}
                 onBack={navigateBack}
@@ -366,7 +366,7 @@ function AppContent() {
           )}
 
           {currentScreen === "simulation" && (
-            <ScreenTransition type={screenTransitions.simulation} screenKey="simulation" direction={direction}>
+            <ScreenTransition key="simulation" type={screenTransitions.simulation} screenKey="simulation" direction={direction}>
               <SimulationScreen
                 initialInstallments={initialInstallments}
                 initialDownpayment={simulationData.downpayment > 0 ? simulationData.downpayment : undefined}
@@ -378,7 +378,7 @@ function AppContent() {
           )}
 
           {currentScreen === "suggested" && (
-            <ScreenTransition type={screenTransitions.suggested} screenKey="suggested" direction={direction}>
+            <ScreenTransition key="suggested" type={screenTransitions.suggested} screenKey="suggested" direction={direction}>
               <SuggestedScreen
                 targetValue={targetMonthlyValue}
                 onBack={navigateBack}
@@ -388,7 +388,7 @@ function AppContent() {
           )}
 
           {currentScreen === "dueDate" && (
-            <ScreenTransition type={screenTransitions.dueDate} screenKey="dueDate" direction={direction}>
+            <ScreenTransition key="dueDate" type={screenTransitions.dueDate} screenKey="dueDate" direction={direction}>
               <DueDateScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -403,7 +403,7 @@ function AppContent() {
           )}
 
           {currentScreen === "summary" && (
-            <ScreenTransition type={screenTransitions.summary} screenKey="summary" direction={direction}>
+            <ScreenTransition key="summary" type={screenTransitions.summary} screenKey="summary" direction={direction}>
               <SummaryScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -421,7 +421,7 @@ function AppContent() {
           )}
 
           {currentScreen === "terms" && (
-            <ScreenTransition type={screenTransitions.terms} screenKey="terms" direction={direction}>
+            <ScreenTransition key="terms" type={screenTransitions.terms} screenKey="terms" direction={direction}>
               <TermsConditionsScreen
                 onBack={navigateBack}
                 onConfirm={handleTermsConfirm}
@@ -435,13 +435,13 @@ function AppContent() {
           )}
 
           {currentScreen === "loading" && (
-            <ScreenTransition type={screenTransitions.loading} screenKey="loading" direction={direction}>
+            <ScreenTransition key="loading" type={screenTransitions.loading} screenKey="loading" direction={direction}>
               <LoadingScreen onComplete={handleLoadingComplete} />
             </ScreenTransition>
           )}
 
           {currentScreen === "feedback" && (
-            <ScreenTransition type={screenTransitions.feedback} screenKey="feedback" direction={direction}>
+            <ScreenTransition key="feedback" type={screenTransitions.feedback} screenKey="feedback" direction={direction}>
               <FeedbackScreen
                 onMakePayment={handleRestartPrototype}
                 onDoLater={handleRestartPrototype}
@@ -451,7 +451,7 @@ function AppContent() {
           )}
 
           {currentScreen === "success" && (
-            <ScreenTransition type={screenTransitions.success} screenKey="success" direction={direction}>
+            <ScreenTransition key="success" type={screenTransitions.success} screenKey="success" direction={direction}>
               <SuccessScreen />
             </ScreenTransition>
           )}
