@@ -9,6 +9,7 @@ import LanguageSelector from "./screens/LanguageSelector/LanguageSelector";
 import { FlowSelectorScreen } from "./screens/FlowSelector";
 import { colors } from "./constants";
 import { I18nProvider, useTranslation } from "./i18n/context";
+import { ScreenTransition, screenTransitions } from "./transitions";
 import type { Locale } from "./i18n/types";
 
 type ScreenType = "flowSelector" | "languageSelector" | "initialLoading" | "offerhub" | "installment" | "simulation" | "suggested" | "dueDate" | "summary" | "terms" | "loading" | "feedback" | "success";
@@ -301,26 +302,6 @@ function AppContent() {
     }
   };
 
-  // Variantes de transição
-  const slideVariants = {
-    enter: (direction: "forward" | "backward") => ({
-      x: direction === "forward" ? "100%" : "-100%",
-      opacity: 0
-    }),
-    center: { x: 0, opacity: 1 },
-    exit: (direction: "forward" | "backward") => ({
-      x: direction === "forward" ? "-100%" : "100%",
-      opacity: 0
-    })
-  };
-
-  const pageTransition = {
-    type: "spring",
-    stiffness: 260,
-    damping: 26,
-    mass: 0.9
-  };
-
   const safeAreaBg = (currentScreen === "flowSelector" || currentScreen === "languageSelector") ? "#820AD1" : "#ffffff";
 
   return (
@@ -333,10 +314,7 @@ function AppContent() {
         <div className="absolute left-0 right-0 bottom-0 app-safe-top">
         <AnimatePresence initial={false} custom={direction}>
           {currentScreen === "flowSelector" && (
-            <motion.div key="flowSelector" className="absolute inset-0 bg-white"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            >
+            <ScreenTransition type={screenTransitions.flowSelector} screenKey="flowSelector" direction={direction}>
               <FlowSelectorScreen
                 onSelectFlow={(flow) => {
                   setActiveFlow(flow);
@@ -345,14 +323,11 @@ function AppContent() {
                   setCurrentScreen("languageSelector");
                 }}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "languageSelector" && (
-            <motion.div key="languageSelector" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.languageSelector} screenKey="languageSelector" direction={direction}>
               <LanguageSelector
                 onSelectLanguage={handleLanguageSelect}
                 onBack={enteredViaDeepLink.current ? undefined : () => {
@@ -361,49 +336,37 @@ function AppContent() {
                   setCurrentScreen("flowSelector");
                 }}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "initialLoading" && (
-            <motion.div key="initialLoading" className="absolute inset-0 bg-white flex items-center justify-center"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            <ScreenTransition type={screenTransitions.initialLoading} screenKey="initialLoading" direction={direction} className="absolute inset-0 bg-white flex items-center justify-center">
               <motion.div
                 className="w-8 h-8 rounded-full border-4 border-t-transparent"
                 style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "offerhub" && (
-            <motion.div key="offerhub" className="absolute inset-0"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
+            <ScreenTransition type={screenTransitions.offerhub} screenKey="offerhub" direction={direction} className="absolute inset-0">
               <OfferHubScreen onClose={handleOfferHubClose} onOfferSelect={handleOfferSelect} />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "installment" && (
-            <motion.div key="installment" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.installment} screenKey="installment" direction={direction}>
               <InstallmentValueScreen
                 onComplete={handleInstallmentComplete}
                 onBack={navigateBack}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "simulation" && (
-            <motion.div key="simulation" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.simulation} screenKey="simulation" direction={direction}>
               <SimulationScreen
                 initialInstallments={initialInstallments}
                 initialDownpayment={simulationData.downpayment > 0 ? simulationData.downpayment : undefined}
@@ -411,27 +374,21 @@ function AppContent() {
                 onBack={navigateBack}
                 onContinue={handleSimulationContinue}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "suggested" && (
-            <motion.div key="suggested" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.suggested} screenKey="suggested" direction={direction}>
               <SuggestedScreen
                 targetValue={targetMonthlyValue}
                 onBack={navigateBack}
                 onSelect={handleSuggestedSelect}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "dueDate" && (
-            <motion.div key="dueDate" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.dueDate} screenKey="dueDate" direction={direction}>
               <DueDateScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -442,14 +399,11 @@ function AppContent() {
                 onBack={navigateBack}
                 onContinue={handleDueDateContinue}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "summary" && (
-            <motion.div key="summary" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.summary} screenKey="summary" direction={direction}>
               <SummaryScreen
                 installments={simulationData.installments}
                 monthlyPayment={simulationData.monthlyPayment}
@@ -463,14 +417,11 @@ function AppContent() {
                 onEdit={handleSummaryEdit}
                 onViewTerms={handleViewTermsFromSummary}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "terms" && (
-            <motion.div key="terms" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.terms} screenKey="terms" direction={direction}>
               <TermsConditionsScreen
                 onBack={navigateBack}
                 onConfirm={handleTermsConfirm}
@@ -480,38 +431,29 @@ function AppContent() {
                   <PinScreen onComplete={handlePinComplete} onClose={handlePinClose} />
                 </div>
               )}
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "loading" && (
-            <motion.div key="loading" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.loading} screenKey="loading" direction={direction}>
               <LoadingScreen onComplete={handleLoadingComplete} />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "feedback" && (
-            <motion.div key="feedback" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.feedback} screenKey="feedback" direction={direction}>
               <FeedbackScreen
                 onMakePayment={handleRestartPrototype}
                 onDoLater={handleRestartPrototype}
                 onClose={handleRestartPrototype}
               />
-            </motion.div>
+            </ScreenTransition>
           )}
 
           {currentScreen === "success" && (
-            <motion.div key="success" custom={direction} variants={slideVariants}
-              initial="enter" animate="center" exit="exit" transition={pageTransition}
-              className="absolute inset-0 bg-white"
-            >
+            <ScreenTransition type={screenTransitions.success} screenKey="success" direction={direction}>
               <SuccessScreen />
-            </motion.div>
+            </ScreenTransition>
           )}
         </AnimatePresence>
         </div>
