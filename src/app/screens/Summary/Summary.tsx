@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import svgPaths from "../../../imports/svg-h2o8ic8eql";
 import imgLeading from "../../../assets/b2baec999158d1ea5a2d33a31da4c4eb97f205be.png";
 import { colors, tokens } from "../../constants";
+import { Divider, LoadingSpinner } from "../../components/primitives";
 import BottomActionBar from "../../components/BottomActionBar";
 import { ScreenNavBar } from "../../components/ScreenNavBar";
 import { useTranslation } from "../../i18n/context";
@@ -87,12 +88,7 @@ function LoadingOverlay() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <motion.div
-        className="w-12 h-12 rounded-full border-4 border-t-transparent"
-        style={{ borderColor: `${colors.primary.purple} transparent ${colors.primary.purple} ${colors.primary.purple}` }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-      />
+      <LoadingSpinner size={48} borderWidth={4} />
     </motion.div>
   );
 }
@@ -241,7 +237,7 @@ function PaymentPlanBlock({ installments, monthlyPayment, dueDate, downpayment, 
                         </div>
                       </div>
                       <div className="absolute bottom-0 content-stretch flex flex-col items-center justify-center left-0 px-[16px] right-0">
-                        <div className="bg-[rgba(31,2,48,0.08)] h-px shrink-0 w-full" />
+                        <Divider height={1} color={colors.border.default} />
                       </div>
                     </div>
                   </div>
@@ -264,7 +260,7 @@ function PaymentPlanBlock({ installments, monthlyPayment, dueDate, downpayment, 
                       </div>
                     </div>
                     <div className="absolute bottom-0 content-stretch flex flex-col items-center justify-center left-0 px-[16px] right-0">
-                      <div className="bg-[rgba(31,2,48,0.08)] h-px shrink-0 w-full" />
+                      <Divider height={1} color={colors.border.default} />
                     </div>
                   </div>
                 </div>
@@ -286,7 +282,7 @@ function PaymentPlanBlock({ installments, monthlyPayment, dueDate, downpayment, 
                       </div>
                     </div>
                     <div className="absolute bottom-0 content-stretch flex flex-col items-center justify-center left-0 px-[16px] right-0">
-                      <div className="bg-[rgba(31,2,48,0.08)] h-px shrink-0 w-full" />
+                      <Divider height={1} color={colors.border.default} />
                     </div>
                   </div>
                 </div>
@@ -309,7 +305,7 @@ function PaymentPlanBlock({ installments, monthlyPayment, dueDate, downpayment, 
                       </div>
                     </div>
                     <div className="absolute bottom-0 content-stretch flex flex-col items-center justify-center left-0 px-[16px] right-0">
-                      <div className="bg-[rgba(31,2,48,0.08)] h-px shrink-0 w-full" />
+                      <Divider height={1} color={colors.border.default} />
                     </div>
                   </div>
                 </div>

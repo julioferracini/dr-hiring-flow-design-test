@@ -39,6 +39,49 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* ── Design System Color Tokens ─────────────────────────────────────────── */
+  /* Primary */
+  --color-nu-purple: #820ad1;
+  --color-nu-purple-light: rgba(130, 10, 209, 0.05);
+  --color-nu-purple-hover: rgba(130, 10, 209, 0.06);
+  --color-nu-purple-pressed: rgba(130, 10, 209, 0.12);
+  --color-nu-purple-shadow: rgba(130, 10, 209, 0.25);
+  --color-nu-purple-ring: rgba(130, 10, 209, 0.3);
+  /* Purple tints */
+  --color-nu-tint-subtle: #faf6ff;
+  --color-nu-tint-light: #f6ecff;
+  --color-nu-tint-medium: #ecd9ff;
+  /* Text */
+  --color-nu-text: #1f0230;
+  --color-nu-text-secondary: rgba(31, 2, 48, 0.62);
+  --color-nu-text-muted: rgba(0, 0, 0, 0.64);
+  --color-nu-text-hint: rgba(0, 0, 0, 0.44);
+  --color-nu-text-placeholder: rgba(0, 0, 0, 0.4);
+  --color-nu-text-disabled: rgba(0, 0, 0, 0.32);
+  /* Success */
+  --color-nu-success-bg: #ddf5e5;
+  --color-nu-success-text: #0c7a3a;
+  /* Error */
+  --color-nu-error-text: #d4183d;
+  --color-nu-error-bg: #FEF0F0;
+  --color-nu-error-icon: #E53E3E;
+  /* Neutral */
+  --color-nu-gray: #efefef;
+  --color-nu-gray-mid: #f8f6f8;
+  --color-nu-gray-dark: rgba(31, 2, 48, 0.62);
+  --color-nu-disabled: #c7c7cc;
+  /* Border */
+  --color-nu-border: rgba(31, 2, 48, 0.08);
+  --color-nu-border-subtle: rgba(31, 2, 48, 0.06);
+  --color-nu-border-strong: rgba(31, 2, 48, 0.1);
+  --color-nu-divider: #efefef;
+  /* Overlay */
+  --color-nu-overlay: rgba(0, 0, 0, 0.4);
+  --color-nu-overlay-light: rgba(0, 0, 0, 0.12);
+  /* Surface */
+  --color-nu-glass: rgba(255, 255, 255, 0.67);
+  --color-nu-glass-strong: rgba(255, 255, 255, 0.92);
 }
 
 .dark {
@@ -91,48 +134,39 @@
      Body/row values:        Regular (400)  → Nu_Sans_Text:Regular, Graphik:Regular
   ── */
 
-  /* ── Project color tokens (use as text-nu-purple, bg-nu-gray, etc.) ── */
-  /* Primary */
-  --color-nu-purple: #820ad1;
-  --color-nu-purple-light: rgba(130, 10, 209, 0.05);
-  --color-nu-purple-hover: rgba(130, 10, 209, 0.06);
-  --color-nu-purple-pressed: rgba(130, 10, 209, 0.12);
-  --color-nu-purple-shadow: rgba(130, 10, 209, 0.25);
-  --color-nu-purple-ring: rgba(130, 10, 209, 0.3);
-  /* Purple tints */
-  --color-nu-tint-subtle: #faf6ff;
-  --color-nu-tint-light: #f6ecff;
-  --color-nu-tint-medium: #ecd9ff;
-  /* Text */
-  --color-nu-text: #1f0230;
-  --color-nu-text-secondary: rgba(31, 2, 48, 0.62);
-  --color-nu-text-muted: rgba(0, 0, 0, 0.64);
-  --color-nu-text-hint: rgba(0, 0, 0, 0.44);
-  --color-nu-text-placeholder: rgba(0, 0, 0, 0.4);
-  --color-nu-text-disabled: rgba(0, 0, 0, 0.32);
-  /* Success */
-  --color-nu-success-bg: #ddf5e5;
-  --color-nu-success-text: #0c7a3a;
-  /* Error */
-  --color-nu-error-text: #d4183d;
-  --color-nu-error-bg: #FEF0F0;
-  --color-nu-error-icon: #E53E3E;
-  /* Neutral */
-  --color-nu-gray: #efefef;
-  --color-nu-gray-mid: #f8f6f8;
-  --color-nu-gray-dark: rgba(31, 2, 48, 0.62);
-  --color-nu-disabled: #c7c7cc;
-  /* Border */
-  --color-nu-border: rgba(31, 2, 48, 0.08);
-  --color-nu-border-subtle: rgba(31, 2, 48, 0.06);
-  --color-nu-border-strong: rgba(31, 2, 48, 0.1);
-  --color-nu-divider: #efefef;
-  /* Overlay */
-  --color-nu-overlay: rgba(0, 0, 0, 0.4);
-  --color-nu-overlay-light: rgba(0, 0, 0, 0.12);
-  /* Surface */
-  --color-nu-glass: rgba(255, 255, 255, 0.67);
-  --color-nu-glass-strong: rgba(255, 255, 255, 0.92);
+  /* ── Project color tokens (Tailwind utilities reference :root vars) ── */
+  --color-nu-purple: var(--color-nu-purple);
+  --color-nu-purple-light: var(--color-nu-purple-light);
+  --color-nu-purple-hover: var(--color-nu-purple-hover);
+  --color-nu-purple-pressed: var(--color-nu-purple-pressed);
+  --color-nu-purple-shadow: var(--color-nu-purple-shadow);
+  --color-nu-purple-ring: var(--color-nu-purple-ring);
+  --color-nu-tint-subtle: var(--color-nu-tint-subtle);
+  --color-nu-tint-light: var(--color-nu-tint-light);
+  --color-nu-tint-medium: var(--color-nu-tint-medium);
+  --color-nu-text: var(--color-nu-text);
+  --color-nu-text-secondary: var(--color-nu-text-secondary);
+  --color-nu-text-muted: var(--color-nu-text-muted);
+  --color-nu-text-hint: var(--color-nu-text-hint);
+  --color-nu-text-placeholder: var(--color-nu-text-placeholder);
+  --color-nu-text-disabled: var(--color-nu-text-disabled);
+  --color-nu-success-bg: var(--color-nu-success-bg);
+  --color-nu-success-text: var(--color-nu-success-text);
+  --color-nu-error-text: var(--color-nu-error-text);
+  --color-nu-error-bg: var(--color-nu-error-bg);
+  --color-nu-error-icon: var(--color-nu-error-icon);
+  --color-nu-gray: var(--color-nu-gray);
+  --color-nu-gray-mid: var(--color-nu-gray-mid);
+  --color-nu-gray-dark: var(--color-nu-gray-dark);
+  --color-nu-disabled: var(--color-nu-disabled);
+  --color-nu-border: var(--color-nu-border);
+  --color-nu-border-subtle: var(--color-nu-border-subtle);
+  --color-nu-border-strong: var(--color-nu-border-strong);
+  --color-nu-divider: var(--color-nu-divider);
+  --color-nu-overlay: var(--color-nu-overlay);
+  --color-nu-overlay-light: var(--color-nu-overlay-light);
+  --color-nu-glass: var(--color-nu-glass);
+  --color-nu-glass-strong: var(--color-nu-glass-strong);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
